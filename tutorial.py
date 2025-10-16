@@ -84,3 +84,150 @@ airplane = asb.Airplane(
         )
     ]
 )
+
+# visualise the plane
+import matplotlib.pyplot as plt
+import aerosandbox.tools.pretty_plots as p
+
+drawn_airplane = airplane.deepcopy()
+drawn_airplane.wings = [w.subdivide_sections(15, np.cosspace) for w in drawn_airplane.wings]
+drawn_airplane.fuselages = [f.subdivide_sections(2) for f in drawn_airplane.fuselages]
+drawn_airplane.draw_three_view(show=False)
+p.show_plot(savefig="glider_geometry.png", dpi=600)
+
+
+# choose operating point for analysis.
+op_point = asb.OperatingPoint(
+    atmosphere=asb.Atmosphere(altitude=0),
+    velocity=15,  # m/s
+)
+
+xyz_ref = [
+    airplane.wings[0].aerodynamic_center(chord_fraction=0.35)[0], 
+    0, 
+    0
+]
+
+# choose to analyse across various alpha
+# AEROBUILDUP ANALYSIS
+
+ab_op_point = op_point.copy()
+ab_op_point.alpha = np.linspace(-12, 12, 50)
+
+aerobuildup_aero = asb.AeroBuildup(
+    airplane=airplane,
+    op_point=ab_op_point,
+    xyz_ref=xyz_ref
+).run()
+aerobuildup_aero["alpha"] = ab_op_point.alpha
+
+aerobuildup_aero
+
+#VORTEXLATTICEMETHOD ANALYSIS
+vlm_op_point = op_point.copy()
+vlm_op_point.alpha = np.linspace(-12, 12, 13)
+
+vlm_aeros = [
+    asb.VortexLatticeMethod(
+        airplane=airplane,
+        op_point=op,
+        xyz_ref=xyz_ref,
+        spanwise_resolution=5
+    ).run()
+    for op in vlm_op_point
+]
+
+vlm_aero = {}
+
+for k in vlm_aeros[0].keys():
+    vlm_aero[k] = np.array([
+        aero[k]
+        for aero in vlm_aeros
+    ])
+vlm_aero["alpha"] = vlm_op_point.alpha
+
+vlm_aero
+
+#QUASI-LINEAR LIFTING LINE ANALYSIS
+ll_op_point = op_point.copy()
+ll_op_point.alpha = np.linspace(-12, 14, 15)
+
+ll_aeros = [
+    asb.LiftingLine(
+        airplane=airplane,
+        op_point=op,
+        xyz_ref=xyz_ref,
+    ).run()
+    for op in ll_op_point
+]
+
+ll_aero = {}
+for k in ll_aeros[0].keys():
+    ll_aero[k] = np.array([
+        aero[k]
+        for aero in ll_aeros
+    ])
+ll_aero["alpha"] = ll_op_point.alpha
+
+ll_aero
+
+# VISUALIZATION
+
+import matplotlib.pyplot as plt
+import aerosandbox.tools.pretty_plots as p
+
+fig, ax = plt.subplots(3, 1, figsize=(7, 8), dpi=200)
+
+for name, aero in {
+    f"ASB AeroBuildup"                       : aerobuildup_aero,
+    f"ASB VLM (no profile drag)": vlm_aero,
+    # f"ASB {asb.__version__} NonlinearLiftingLine"            : nlll_aero,
+    f"ASB LiftingLine"            : ll_aero,
+    # **name_data
+}.items():
+    plt.sca(ax[0])
+    p.plot_smooth(
+        aero["alpha"],
+        aero["CL"],
+        label=name,
+        function_of="x",
+        alpha=0.7,
+    )
+
+    plt.sca(ax[1])
+    p.plot_smooth(
+        aero["CD"],
+        aero["CL"],
+        label=name,
+        alpha=0.7,
+    )
+
+    plt.sca(ax[2])
+    p.plot_smooth(
+        aero["alpha"],
+        aero["Cm"],
+        label=name,
+        function_of="x",
+        alpha=0.7,
+    )
+
+ax[0].set_title("Lift Polar")
+ax[0].set_xlabel("Angle of Attack $\\alpha$ [deg]")
+ax[0].set_ylabel("Lift Coefficient $C_L$ [-]")
+
+ax[1].set_title("Drag Polar")
+ax[1].set_xlabel("Drag Coefficient $C_D$ [-]")
+ax[1].set_ylabel("Lift Coefficient $C_L$ [-]")
+ax[1].set_xlim(left=0)
+
+ax[2].set_title("Moment Polar")
+ax[2].set_xlabel("Angle of Attack $\\alpha$ [deg]")
+ax[2].set_ylabel("Moment Coefficient $C_m$ [-]")
+# ax[2].set_ylim(bottom=0)  # Keep zero in view
+
+ax[0].legend(
+    title="Analysis Method",
+    fontsize=8,
+    framealpha=0.2,
+)
+p.show_plot(legend=False, savefig="glider_polars.pdf")
