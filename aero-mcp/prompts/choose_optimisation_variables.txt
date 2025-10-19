@@ -1,0 +1,43 @@
+You are a python coding expert tasked with generating a small section of code to run an experiment based on its description.
+You are picking which of the variables defined in the code snippet given below will be free to vary based on the experiment description.
+
+Your code will go after the # --- GEMINI INSERTION POINT --- in the following pre-existing code snippet.
+
+CODE:
+x_le_list = wing_data['x_le']
+y_le_list = wing_data['y_le']
+z_le_list = wing_data['z_le']
+chord_list = wing_data['chord']
+twist_list = wing_data['twist']
+airfoil_list = wing_data['airfoil']
+n_xsecs = len(x_le_list)
+
+altitude=op_data['atmosphere']['altitude']
+velocity = op_data['velocity']
+alpha = op_data['alpha']
+beta = op_data['beta']
+p = op_data['p']
+q = op_data['q']
+r = op_data['r']
+
+# --- 3. Setup optimization variables ---
+
+# initialise the optimiser
+opti = asb.Opti()
+
+# --- GEMINI INSERTION POINT ---
+
+EXAMPLE:
+If the experiment description were: 'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the lift coefficient'
+
+You would return the following code:
+
+chord_list = opti.variable(init_guess=np.array(wing_data['chord'])) # This is made optimisable
+alpha = opti.variable(init_guess=op_data['alpha'], lower_bound=0, upper_bound=30)
+
+KEY RULES:
+- Use the original data (e.g., wing_data['chord'], op_data['alpha']) as the init_guess.
+- Include any lower_bound or upper_bound constraints specified in the description.
+- Only redefine the variables that are explicitly mentioned as being optimized.
+- Generate ONLY the optimization variable code that should be inserted after the GEMINI INSERTION POINT. 
+- Return only the Python code lines that define the optimization variables in the 'code' field.

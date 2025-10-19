@@ -43,8 +43,8 @@ opti = asb.Opti()
 
 # --- FIRST GEMINI INSERTION POINT ---
 
-'''chord_list = opti.variable(init_guess=np.array(wing_data['chord'])) # This is made optimisable
-alpha = opti.variable(init_guess=op_data['alpha'], lower_bound=0, upper_bound=30)'''
+chord_list = opti.variable(init_guess=np.array(wing_data['chord']), lower_bound=np.array(wing_data['chord']), upper_bound=np.array(wing_data['chord'])) # This is made optimisable
+alpha = opti.variable(init_guess=op_data['alpha'], lower_bound=0, upper_bound=30)
 
 # --- END GEMINI INSERTION POINT ---
 
@@ -104,11 +104,13 @@ aero = vlm.run()
 
 # --- 7. Setup the optimization problem ---
 
-# --- SECONDGEMINI INSERTION POINT ---
+# --- SECOND GEMINI INSERTION POINT ---
 
-'''opti.subject_to([
+opti.subject_to([
     chord_list > 0,            # All chord lengths must be positive (physical constraint)
     main_wing.area() == 0.25,   # Fix total wing area at 0.25 m² (one of our design requirements)
+    alpha >= 0,                # Angle of attack must be non-negative
+    alpha <= 30,               # Angle of attack must not exceed 30 degrees
 ])
 
 # Enforce monotonically decreasing chord distribution from root to tip
@@ -121,9 +123,10 @@ opti.subject_to(
     aero["CL"] == 1
 )
 
-# Objective function: Minimize the drag coefficient
-# For a fixed lift and span, this will find the minimum induced drag configuration
-opti.minimize(aero["CD"])'''
+# Objective function: Minimize the lift coefficient
+# For a fixed lift requirement, this might seem counter-intuitive, but in combination with other implicit constraints,
+# it can lead to specific aerodynamic efficiency goals.
+opti.minimize(aero["CL"])
 
 # --- END GEMINI INSERTION POINT ---
 
