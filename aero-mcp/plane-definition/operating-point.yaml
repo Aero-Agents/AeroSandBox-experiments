@@ -1,0 +1,16 @@
+# ---------------------------------------------------
+# AeroSandbox Operating Point Definition
+# Defines flight conditions for aerodynamic analysis
+# ---------------------------------------------------
+
+atmosphere:
+  altitude: 0.0  # meters above sea level
+
+velocity: 1.0  # m/s (or non-dimensional)
+alpha: 10.457178852389777  # Angle of attack (degrees)
+beta: 0.0  # Sideslip angle (degrees)
+
+# Angular rates (rad/s)
+p: 0.0  # Roll rate
+q: 0.0  # Pitch rate
+r: 0.0  # Yaw rate
