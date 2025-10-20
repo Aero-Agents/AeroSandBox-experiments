@@ -16,6 +16,12 @@ import google.generativeai as genai
 from langgraph.graph import StateGraph, END
 from langgraph.graph.message import add_messages
 from pydantic import BaseModel
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.markdown import Markdown
+
+console = Console()
 
 
 class OptimizationCode(BaseModel):
@@ -34,36 +40,39 @@ class ExperimentState(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-def add_system_message(state: ExperimentState, content: str) -> ExperimentState:
-    """Add a system message to the state"""
-    state['messages'].append({'role': 'system', 'content': content})
-    return state
+def add_system_message(content: str) -> dict:
+    """Create a system message to add to state"""
+    return {'messages': [{'role': 'system', 'content': content}]}
 
 
-def load_prompt_template(state: ExperimentState) -> ExperimentState:
+def load_prompt_template(state: ExperimentState) -> dict:
     """Load the prompt template from choose_optimisation_variables.txt"""
     try:
         with open('./prompts/choose_optimisation_variables.txt', 'r') as f:
             prompt_template = f.read()
-        state['prompt_template'] = prompt_template
-        return add_system_message(state, 'Loaded prompt template successfully')
+        return {
+            'prompt_template': prompt_template,
+            **add_system_message('Loaded prompt template successfully')
+        }
     except FileNotFoundError:
-        return add_system_message(state, 'Error: Could not find choose_optimisation_variables.txt')
+        return add_system_message('Error: Could not find choose_optimisation_variables.txt')
 
-def load_constraints_prompt_template(state: ExperimentState) -> ExperimentState:
+def load_constraints_prompt_template(state: ExperimentState) -> dict:
     """Load the constraints prompt template from setup_constraints_and_objective.txt"""
     try:
         with open('./prompts/setup_constraints_and_objective.txt', 'r') as f:
             constraints_prompt_template = f.read()
-        state['constraints_prompt_template'] = constraints_prompt_template
-        return add_system_message(state, 'Loaded constraints prompt template successfully')
+        return {
+            'constraints_prompt_template': constraints_prompt_template,
+            **add_system_message('Loaded constraints prompt template successfully')
+        }
     except FileNotFoundError:
-        return add_system_message(state, 'Error: Could not find setup_constraints_and_objective.txt')
+        return add_system_message('Error: Could not find setup_constraints_and_objective.txt')
 
-def generate_optimization_code(state: ExperimentState) -> ExperimentState:
-    """Use Gemini 2.5 Flash to generate optimization variable code with structured output"""
+def generate_optimization_code(state: ExperimentState) -> dict:
+    """Use Gemini 2.5 Flash-Lite to generate optimization variable code with structured output"""
     if not state.get('prompt_template'):
-        return add_system_message(state, 'Error: No prompt template loaded')
+        return add_system_message('Error: No prompt template loaded')
     
     try:
         model = genai.GenerativeModel(
@@ -84,24 +93,28 @@ EXPERIMENT DESCRIPTION: {state['experiment_description']}
         response = model.generate_content(full_prompt)
         result = OptimizationCode.model_validate_json(response.text)
         
-        state['generated_code'] = result.code.strip()
-        state['messages'].append({
-            'role': 'assistant',
-            'content': f'Generated optimization code:\n{state["generated_code"]}'
-        })
-        return state
+        generated_code = result.code.strip()
+        return {
+            'generated_code': generated_code,
+            'messages': [{
+                'role': 'assistant',
+                'content': f'Generated optimization code:\n{generated_code}'
+            }]
+        }
     except Exception as e:
-        state['generated_code'] = ''
-        return add_system_message(state, f'Error generating code with Gemini: {str(e)}')
+        return {
+            'generated_code': '',
+            **add_system_message(f'Error generating code with Gemini: {str(e)}')
+        }
 
-def generate_constraints_code(state: ExperimentState) -> ExperimentState:
+def generate_constraints_code(state: ExperimentState) -> dict:
     """Use Gemini 2.5 Flash to generate constraints and objective function code with structured output"""
     if not state.get('constraints_prompt_template'):
-        return add_system_message(state, 'Error: No constraints prompt template loaded')
+        return add_system_message('Error: No constraints prompt template loaded')
     
     try:
         model = genai.GenerativeModel(
-            'gemini-2.5-flash-lite',
+            'gemini-2.5-flash',
             generation_config={
                 "response_mime_type": "application/json",
                 "response_schema": OptimizationCode
@@ -118,23 +131,27 @@ EXPERIMENT DESCRIPTION: {state['experiment_description']}
         response = model.generate_content(full_prompt)
         result = OptimizationCode.model_validate_json(response.text)
         
-        state['generated_constraints_code'] = result.code.strip()
-        state['messages'].append({
-            'role': 'assistant',
-            'content': f'Generated constraints code:\n{state["generated_constraints_code"]}'
-        })
-        return state
+        generated_constraints_code = result.code.strip()
+        return {
+            'generated_constraints_code': generated_constraints_code,
+            'messages': [{
+                'role': 'assistant',
+                'content': f'Generated constraints code:\n{generated_constraints_code}'
+            }]
+        }
     except Exception as e:
-        state['generated_constraints_code'] = ''
-        return add_system_message(state, f'Error generating constraints code with Gemini: {str(e)}')
+        return {
+            'generated_constraints_code': '',
+            **add_system_message(f'Error generating constraints code with Gemini: {str(e)}')
+        }
 
-def create_modified_framework(state: ExperimentState) -> ExperimentState:
+def create_modified_framework(state: ExperimentState) -> dict:
     """Create a modified copy of experiment_framework.py with generated code inserted"""
     if not state.get('generated_code'):
-        return add_system_message(state, 'Error: No generated code to insert')
+        return add_system_message('Error: No generated code to insert')
     
     if not state.get('generated_constraints_code'):
-        return add_system_message(state, 'Error: No generated constraints code to insert')
+        return add_system_message('Error: No generated constraints code to insert')
     
     try:
         with open('experiment_framework.py', 'r') as f:
@@ -146,7 +163,7 @@ def create_modified_framework(state: ExperimentState) -> ExperimentState:
         modified_content = re.sub(pattern1, replacement1, framework_content, flags=re.DOTALL)
         
         # Insert constraints and objective code at second insertion point
-        pattern2 = r'(# --- SECONDGEMINI INSERTION POINT ---\n)(.*?)(# --- END GEMINI INSERTION POINT ---)'
+        pattern2 = r'(# --- SECOND GEMINI INSERTION POINT ---\n)(.*?)(# --- END GEMINI INSERTION POINT ---)'
         replacement2 = f'\\1\n{state["generated_constraints_code"]}\n\n\\3'
         modified_content = re.sub(pattern2, replacement2, modified_content, flags=re.DOTALL)
         
@@ -154,15 +171,17 @@ def create_modified_framework(state: ExperimentState) -> ExperimentState:
         with open(modified_filename, 'w') as f:
             f.write(modified_content)
         
-        state['modified_framework_path'] = modified_filename
-        return add_system_message(state, f'Created modified framework: {modified_filename}')
+        return {
+            'modified_framework_path': modified_filename,
+            **add_system_message(f'Created modified framework: {modified_filename}')
+        }
     except Exception as e:
-        return add_system_message(state, f'Error creating modified framework: {str(e)}')
+        return add_system_message(f'Error creating modified framework: {str(e)}')
 
-def run_experiment(state: ExperimentState) -> ExperimentState:
+def run_experiment(state: ExperimentState) -> dict:
     """Run the modified experiment framework"""
     if not state.get('modified_framework_path'):
-        return add_system_message(state, 'Error: No modified framework to run')
+        return add_system_message('Error: No modified framework to run')
     
     try:
         result = subprocess.run(
@@ -173,11 +192,11 @@ def run_experiment(state: ExperimentState) -> ExperimentState:
         )
         
         if result.returncode == 0:
-            return add_system_message(state, f'Experiment completed successfully!\nOutput:\n{result.stdout}')
+            return add_system_message(f'Experiment completed successfully!\nOutput:\n{result.stdout}')
         else:
-            return add_system_message(state, f'Experiment failed with error:\n{result.stderr}')
+            return add_system_message(f'Experiment failed with error:\n{result.stderr}')
     except Exception as e:
-        return add_system_message(state, f'Error running experiment: {str(e)}')
+        return add_system_message(f'Error running experiment: {str(e)}')
 
 
 def create_experiment_workflow() -> StateGraph:
@@ -204,19 +223,59 @@ def create_experiment_workflow() -> StateGraph:
 
 def print_results(final_state: ExperimentState) -> None:
     """Print the workflow results"""
-    print("\n=== Workflow Results ===")
+    console.print("\n")
+    console.print(Panel.fit("📊 Workflow Results", style="bold cyan"))
+    
+    # Track if there was an error
+    has_error = False
+    
     for message in final_state['messages']:
         if isinstance(message, dict):
-            print(f"[{message['role'].upper()}] {message['content']}")
+            role = message['role'].upper()
+            content = message['content']
+            
+            # Check if this is an error message
+            if 'error' in content.lower() or 'failed' in content.lower():
+                has_error = True
+                console.print(f"\n[bold red][{role}][/bold red]")
+                console.print(f"[red]{content}[/red]")
+            elif role == 'ASSISTANT':
+                console.print(f"\n[bold green][{role}][/bold green]")
+                # Check if it's code, format with syntax highlighting
+                if 'Generated' in content and 'code:' in content:
+                    parts = content.split('code:', 1)
+                    console.print(parts[0] + 'code:')
+                    if len(parts) > 1:
+                        code = parts[1].strip()
+                        syntax = Syntax(code, "python", theme="monokai", line_numbers=True)
+                        console.print(syntax)
+                else:
+                    console.print(f"[green]{content}[/green]")
+            else:
+                console.print(f"\n[bold blue][{role}][/bold blue]")
+                console.print(f"[blue]{content}[/blue]")
         else:
-            print(f"[SYSTEM] {str(message)}")
-        print("-" * 50)
+            console.print(f"\n[bold yellow][SYSTEM][/bold yellow]")
+            console.print(f"[yellow]{str(message)}[/yellow]")
+        
+        console.print("[dim]" + "─" * 50 + "[/dim]")
     
-    if final_state.get('modified_framework_path'):
-        print(f"\n✅ Experiment completed! Check the results above.")
-        print(f"📁 Modified framework saved as: {final_state['modified_framework_path']}")
+    console.print("\n")
+    
+    # Only print success if there was no error AND the framework was created
+    if final_state.get('modified_framework_path') and not has_error:
+        console.print(Panel.fit(
+            f"✅ [bold green]Experiment completed successfully![/bold green]\n"
+            f"📁 Modified framework saved as: [cyan]{final_state['modified_framework_path']}[/cyan]",
+            style="green"
+        ))
     else:
-        print("\n❌ Experiment generation failed. Check the error messages above.")
+        console.print(Panel.fit(
+            "❌ [bold red]Experiment generation failed.[/bold red]\n"
+            "Check the error messages above.",
+            style="red"
+        ))
+
 
 
 def main() -> None:
@@ -224,21 +283,21 @@ def main() -> None:
     # Configure Gemini API
     api_key = os.getenv('GEMINI_API_KEY')
     if not api_key:
-        print("Error: Please set your GEMINI_API_KEY environment variable")
-        print("You can get an API key from: https://ai.google.dev/")
+        console.print("[bold red]Error:[/bold red] Please set your GEMINI_API_KEY environment variable")
+        console.print("You can get an API key from: [cyan]https://ai.google.dev/[/cyan]")
         return
     
     genai.configure(api_key=api_key)
     
     # Get experiment description from user
-    print("=== AeroSandBox Experiment Generator ===")
-    print("This tool will generate optimization variables based on your experiment description.")
-    print("\nExample: 'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the drag coefficient, with a required lift coefficient of 1, a fixed wing area of 0.25 and monotonically decreasing chord lengths from root to tip.'")
-    print()
+    console.print("\n")
+    console.print(Panel.fit("🚀 AeroSandBox Experiment Generator", style="bold magenta"))
+    console.print("\n[bold]This tool will generate optimization variables based on your experiment description.[/bold]\n")
+    console.print("[dim]Example:[/dim] [italic]'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the drag coefficient, with a required lift coefficient of 1, a fixed wing area of 0.25 and monotonically decreasing chord lengths from root to tip.'[/italic]\n")
     
     experiment_description = input("Enter your experiment description: ").strip()
     if not experiment_description:
-        print("Error: Please provide an experiment description")
+        console.print("[bold red]Error:[/bold red] Please provide an experiment description")
         return
     
     # Initialize state and run workflow
@@ -253,7 +312,8 @@ def main() -> None:
     )
     
     workflow = create_experiment_workflow()
-    print("\n=== Running Experiment Generation Workflow ===")
+    console.print("\n")
+    console.print(Panel.fit("⚙️  Running Experiment Generation Workflow", style="bold yellow"))
     final_state = workflow.invoke(initial_state)
     
     print_results(final_state)

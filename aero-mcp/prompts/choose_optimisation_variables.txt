@@ -1,43 +1,29 @@
 You are a python coding expert tasked with generating a small section of code to run an experiment based on its description.
-You are picking which of the variables defined in the code snippet given below will be free to vary based on the experiment description.
+You are picking which of the variables defined below will be free to vary based on the experiment description.
 
-Your code will go after the # --- GEMINI INSERTION POINT --- in the following pre-existing code snippet.
+VARIABLES:
+- x_le_list (the x-coordinates of the leading edge of each wing cross-section)
+- y_le_list (the y-coordinates of the leading edge of each wing cross-section as a proportion of the chord length)
+- z_le_list (the z-coordinates of the leading edge of each wing cross-section)
+- chord_list (the chord lengths of each wing cross-section)
+- twist_list (the twist angles of each wing cross-section)
+- airfoil_list (the airfoil shapes of each wing cross-section)
+- alpha (the angle of attack of the aircraft)
+- beta (the sideslip angle of the aircraft)
+- p, q, r (the roll, pitch, and yaw rates of the aircraft)
+- altitude (the altitude of the aircraft)
+- velocity (the velocity of the aircraft)
 
-CODE:
-x_le_list = wing_data['x_le']
-y_le_list = wing_data['y_le']
-z_le_list = wing_data['z_le']
-chord_list = wing_data['chord']
-twist_list = wing_data['twist']
-airfoil_list = wing_data['airfoil']
-n_xsecs = len(x_le_list)
+EXAMPLE INPUT EXPERIMENT DESCRIPTION:
+'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the drag coefficient, with a required lift coefficient of 1, a fixed wing area of 0.25 and monotonically decreasing chord lengths from root to tip.'
 
-altitude=op_data['atmosphere']['altitude']
-velocity = op_data['velocity']
-alpha = op_data['alpha']
-beta = op_data['beta']
-p = op_data['p']
-q = op_data['q']
-r = op_data['r']
+EXAMPLE OUTPUT CODE:
 
-# --- 3. Setup optimization variables ---
-
-# initialise the optimiser
-opti = asb.Opti()
-
-# --- GEMINI INSERTION POINT ---
-
-EXAMPLE:
-If the experiment description were: 'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the lift coefficient'
-
-You would return the following code:
-
-chord_list = opti.variable(init_guess=np.array(wing_data['chord'])) # This is made optimisable
-alpha = opti.variable(init_guess=op_data['alpha'], lower_bound=0, upper_bound=30)
+chord_list = opti.variable(init_guess=np.array(chord_list))
+alpha = opti.variable(init_guess=alpha, lower_bound=0, upper_bound=30)
 
 KEY RULES:
-- Use the original data (e.g., wing_data['chord'], op_data['alpha']) as the init_guess.
+- Use the original data (e.g., chord_list, alpha) as the init_guess.
 - Include any lower_bound or upper_bound constraints specified in the description.
-- Only redefine the variables that are explicitly mentioned as being optimized.
-- Generate ONLY the optimization variable code that should be inserted after the GEMINI INSERTION POINT. 
-- Return only the Python code lines that define the optimization variables in the 'code' field.
+- Only include bounds explicitly specified in the description.
+- Only redefine the variables from the list above that are mentioned as being optimized.

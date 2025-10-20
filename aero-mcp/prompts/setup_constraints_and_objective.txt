@@ -38,28 +38,20 @@ EXAMPLE INPUT EXPERIMENT DESCRIPTION:
 
 EXAMPLE OUTPUT CODE:
 
+# Set constraints
 opti.subject_to([
-    chord_list > 0,            # All chord lengths must be positive (physical constraint)
-    main_wing.area() == 0.25,   # Fix total wing area at 0.25 m² (one of our design requirements)
+    chord_list > 0,
+    main_wing.area() == 0.25,
+    np.diff(chord_list) <= 0,
+    aero["CL"] == 1
 ])
 
-# Enforce monotonically decreasing chord distribution from root to tip
-# This ensures the wing tapers smoothly toward the tip (physically realistic)
-opti.subject_to(
-    np.diff(chord_list) <= 0 # The change in chord from one section to the next should be negative or zero.
-)
-# This ensures our optimized wing produces the required amount of lift
-opti.subject_to(
-    aero["CL"] == 1
-)
-
-# Objective function: Minimize the drag coefficient
-# For a fixed lift and span, this will find the minimum induced drag configuration
+# Set objective
 opti.minimize(aero["CD"])
 
 KEY RULES:
 - Only generate code that sets constraints and the objective function.
-- The code should be provided in plain text without markdown formatting.
+- The code should be provided in plain text without markdown formatting and no comments.
 - Use the variable names as given above.
 - Ensure all constraints are physically meaningful and relevant to aerodynamics.
 - Include sensible constraints to ensure realistic designs (e.g., positive chord lengths, feasible angles of attack).

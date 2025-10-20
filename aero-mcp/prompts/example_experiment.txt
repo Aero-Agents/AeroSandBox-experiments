@@ -1,0 +1,2 @@
+Optimise the dihedral angle between 0-15 degrees and altitude (from 1000 to 5000m) to minimise the drag coefficient/lift coefficient, with a fixed 
+wing area of 0.25 and monotonically decreasing chord lengths from root to tip

@@ -42,10 +42,6 @@ r = op_data['r']
 opti = asb.Opti()
 
 # --- FIRST GEMINI INSERTION POINT ---
-
-'''chord_list = opti.variable(init_guess=np.array(wing_data['chord'])) # This is made optimisable
-alpha = opti.variable(init_guess=op_data['alpha'], lower_bound=0, upper_bound=30)'''
-
 # --- END GEMINI INSERTION POINT ---
 
 # --- 4. Build the Wing and Airplane objects ---
@@ -104,32 +100,26 @@ aero = vlm.run()
 
 # --- 7. Setup the optimization problem ---
 
-# --- SECONDGEMINI INSERTION POINT ---
-
-'''opti.subject_to([
-    chord_list > 0,            # All chord lengths must be positive (physical constraint)
-    main_wing.area() == 0.25,   # Fix total wing area at 0.25 m² (one of our design requirements)
-])
-
-# Enforce monotonically decreasing chord distribution from root to tip
-# This ensures the wing tapers smoothly toward the tip (physically realistic)
-opti.subject_to(
-    np.diff(chord_list) <= 0 # The change in chord from one section to the next should be negative or zero.
-)
-# This ensures our optimized wing produces the required amount of lift
-opti.subject_to(
-    aero["CL"] == 1
-)
-
-# Objective function: Minimize the drag coefficient
-# For a fixed lift and span, this will find the minimum induced drag configuration
-opti.minimize(aero["CD"])'''
-
+# --- SECOND GEMINI INSERTION POINT ---
 # --- END GEMINI INSERTION POINT ---
 
 # --- 8. Solve the optimization problem ---
 
 sol = opti.solve()
+x_le_list = sol(x_le_list)
+y_le_list = sol(y_le_list)
+z_le_list = sol(z_le_list)
+chord_list = sol(chord_list)
+twist_list = sol(twist_list)
+airfoil_list = sol(airfoil_list)
+
+altitude = sol(altitude)
+velocity = sol(velocity)
+alpha = sol(alpha)
+beta = sol(beta)
+p = sol(p)
+q = sol(q)
+r = sol(r)
 
 # --- 9. Update the .yaml files with the optimized values ---
 
