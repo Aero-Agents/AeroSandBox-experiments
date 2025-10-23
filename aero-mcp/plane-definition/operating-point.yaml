@@ -6,8 +6,8 @@
 atmosphere:
   altitude: 0.0  # meters above sea level
 
-velocity: 1.0  # m/s (or non-dimensional)
-alpha: 23.112375182421022  # Angle of attack (degrees)
+velocity: 0.0029767732567297033  # m/s (or non-dimensional)
+alpha: 5.0  # Angle of attack (degrees)
 beta: 0.0  # Sideslip angle (degrees)
 
 # Angular rates (rad/s)
