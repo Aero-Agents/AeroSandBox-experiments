@@ -1,6 +1,18 @@
 import yaml
 import aerosandbox as asb
 import aerosandbox.numpy as np
+import sys
+import os
+
+# for now we reset the airplane and operating point files each time
+from create_plane import create_airplane_file
+from create_op import create_operating_point_file
+create_airplane_file()
+create_operating_point_file()
+
+# Parse command-line arguments for experiment ID and output path
+experiment_id = sys.argv[1] if len(sys.argv) > 1 else "default"
+output_file_path = sys.argv[2] if len(sys.argv) > 2 else "./experiment-results/experiment.md"
 
 # --- 1. Load the human-readable file ---
 
@@ -173,39 +185,16 @@ print("Updated YAML files with optimized values")
 
 # --- 10. Visualize the results ---
 
-# Generate a 3D visualization of the optimized wing geometry
+# Generate a 3D visualization of the optimized wing geometry and save
+# Extract the directory from output_file_path to save the plot in the same location
+output_dir = os.path.dirname(output_file_path)
+screenshot_path = os.path.join(output_dir, f"{experiment_id}_plot.png")
+
 vlm = sol(vlm)
-vlm.draw()
-
-# Import matplotlib for plotting and AeroSandBox's plotting utilities
-import matplotlib.pyplot as plt
-import aerosandbox.tools.pretty_plots as p
-
-# Create a figure for comparing our result with the theoretical elliptical distribution
-fig, ax = plt.subplots()
-
-# Plot the optimized chord distribution from VLM
-plt.plot(
-    y_le_list,           # Span locations where we have chord values
-    sol(chord_list),     # Optimized chord lengths (converted from symbolic to numerical)
-    ".-",                # Line with dot markers
-    label="AeroSandbox VLM Result",
-    zorder=4,            # Draw on top of other plot elements
-)
-
-# Generate a smooth analytical elliptical chord distribution for comparison
-y_plot = np.linspace(0, 1, 500)  # Fine resolution for smooth curve
-# Ellipse equation: chord(y) = sqrt(1 - y²) * constant
-# The constant is chosen to match our wing area of 0.25 m²
-plt.plot(
-    y_plot,
-    (1 - y_plot ** 2) ** 0.5 * 4 / np.pi * 0.125,  # Analytical elliptical distribution
-    label="Elliptic Distribution",
-)
-
-# Display the plot with proper labels and title
-p.show_plot(
-    "AeroSandbox Drag Optimization using VortexLatticeMethod",
-    "Span [m]",    # x-axis label
-    "Chord [m]"    # y-axis label
+vlm.draw(
+    show=True,  # This must be True to trigger plotter.show()
+    show_kwargs={
+        "screenshot": screenshot_path,
+        "interactive": False  # This prevents the window from hanging open
+    }
 )

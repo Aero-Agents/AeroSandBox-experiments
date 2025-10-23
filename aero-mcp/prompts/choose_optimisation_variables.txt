@@ -2,17 +2,17 @@ You are a python coding expert tasked with generating a small section of code to
 You are picking which of the variables defined below will be free to vary based on the experiment description.
 
 VARIABLES:
-- x_le_list (the x-coordinates of the leading edge of each wing cross-section)
-- y_le_list (the y-coordinates of the leading edge of each wing cross-section as a proportion of the chord length)
-- z_le_list (the z-coordinates of the leading edge of each wing cross-section)
-- chord_list (the chord lengths of each wing cross-section)
-- twist_list (the twist angles of each wing cross-section)
+- x_le_list (the x-coordinates of the leading edge of each wing cross-section) [m]
+- y_le_list (the y-coordinates of the leading edge of each wing cross-section as a proportion of the chord length) [0, 1]
+- z_le_list (the z-coordinates of the leading edge of each wing cross-section) [m]
+- chord_list (the chord lengths of each wing cross-section) [m]
+- twist_list (the twist angles of each wing cross-section) [degrees]
 - airfoil_list (the airfoil shapes of each wing cross-section)
-- alpha (the angle of attack of the aircraft)
-- beta (the sideslip angle of the aircraft)
-- p, q, r (the roll, pitch, and yaw rates of the aircraft)
-- altitude (the altitude of the aircraft)
-- velocity (the velocity of the aircraft)
+- alpha (the angle of attack of the aircraft) [degrees]
+- beta (the sideslip angle of the aircraft) [degrees]
+- p, q, r (the roll, pitch, and yaw rates of the aircraft) [degrees/s]
+- altitude (the altitude of the aircraft) [m]
+- velocity (the velocity of the aircraft) [m/s]
 
 EXAMPLE INPUT EXPERIMENT DESCRIPTION:
 'Optimise the chord lengths and angle of attack (within 0 and 30 degrees) to minimise the drag coefficient, with a required lift coefficient of 1, a fixed wing area of 0.25 and monotonically decreasing chord lengths from root to tip.'

@@ -4,13 +4,13 @@
 # ---------------------------------------------------
 
 atmosphere:
-  altitude: 2578.452643580913  # meters above sea level
+  altitude: 0  # meters above sea level
 
-velocity: 1.0  # m/s (or non-dimensional)
-alpha: 5.0  # Angle of attack (degrees)
-beta: 0.0  # Sideslip angle (degrees)
+velocity: 1  # m/s (or non-dimensional)
+alpha: 5  # Angle of attack (degrees)
+beta: 0  # Sideslip angle (degrees)
 
 # Angular rates (rad/s)
-p: 0.0  # Roll rate
-q: 0.0  # Pitch rate
-r: 0.0  # Yaw rate
+p: 0  # Roll rate
+q: 0  # Pitch rate
+r: 0  # Yaw rate

@@ -1,17 +1,17 @@
 You are a python coding expert tasked with generating a small section of code to run an experiment based on the experiment description.
 
 You are responsible for settng the constraints for an aeronautical optimization problem, where the variables that could in theory vary are:
-- x_le_list (the x-coordinates of the leading edge of each wing cross-section)
-- y_le_list (the y-coordinates of the leading edge of each wing cross-section as a proportion of the chord length)
-- z_le_list (the z-coordinates of the leading edge of each wing cross-section)
-- chord_list (the chord lengths of each wing cross-section)
-- twist_list (the twist angles of each wing cross-section)
+- x_le_list (the x-coordinates of the leading edge of each wing cross-section) [m]
+- y_le_list (the y-coordinates of the leading edge of each wing cross-section as a proportion of the chord length) [0, 1]
+- z_le_list (the z-coordinates of the leading edge of each wing cross-section) [m]
+- chord_list (the chord lengths of each wing cross-section) [m]
+- twist_list (the twist angles of each wing cross-section) [degrees]
 - airfoil_list (the airfoil shapes of each wing cross-section)
-- alpha (the angle of attack of the aircraft)
-- beta (the sideslip angle of the aircraft)
-- p, q, r (the roll, pitch, and yaw rates of the aircraft)
-- altitude (the altitude of the aircraft)
-- velocity (the velocity of the aircraft)
+- alpha (the angle of attack of the aircraft) [degrees]
+- beta (the sideslip angle of the aircraft) [degrees]
+- p, q, r (the roll, pitch, and yaw rates of the aircraft) [degrees/s]
+- altitude (the altitude of the aircraft) [m]
+- velocity (the velocity of the aircraft) [m/s]
 
 You are also responsible for setting the objective function to be minimized or maximized. This could be a function of any of the following outputs from the aerodynamic model:
 - ‘F_g’ : an [x, y, z] list of forces in geometry axes [N]
