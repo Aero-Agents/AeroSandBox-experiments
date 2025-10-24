@@ -374,11 +374,20 @@ def clean_up(state: ExperimentState) -> dict:
         plot_filename = f"{experiment_id}_plot.png"
         plot_path = os.path.join(output_dir, plot_filename)
         
+        # Construct workflow diagram file path
+        workflow_filename = f"{experiment_id}_workflow.png"
+        workflow_path = os.path.join(output_dir, workflow_filename)
+        
         with open(output_file_path, 'w') as f:
             f.write(f"# Experiment Results\n\n")
             f.write(f"**Experiment ID:** `{experiment_id}`\n\n")
             f.write(f"**Description:** {experiment_description}\n\n")
             f.write(f"**Status:** {'✅ SUCCESS' if not experiment_error else '❌ FAILED'}\n\n")
+            
+            # Workflow diagram
+            if os.path.exists(workflow_path):
+                f.write("## Workflow\n\n")
+                f.write(f"![Workflow Diagram]({workflow_filename})\n\n")
             
             # Optimization code
             if generated_code:
@@ -447,7 +456,7 @@ def should_correct_error(state: ExperimentState) -> str:
         return "correct_error"
     return "clean_up"
 
-def create_experiment_workflow() -> StateGraph:
+def create_experiment_workflow(experiment_id: str, output_dir: str) -> StateGraph:
     """
     Create the LangGraph workflow for experiment generation.
     
@@ -460,6 +469,10 @@ def create_experiment_workflow() -> StateGraph:
     3. run_experiment: Execute the modified framework as a subprocess
     4. correct_code_error: (Conditional) Handle errors if experiment fails
     5. clean_up: Save results and clean up temporary files
+    
+    Args:
+        experiment_id: Unique identifier for the experiment
+        output_dir: Directory where the workflow diagram will be saved
     
     Returns:
         A compiled LangGraph workflow ready to be invoked with an initial state
@@ -497,7 +510,28 @@ def create_experiment_workflow() -> StateGraph:
     workflow.add_edge("clean_up", END)
     
     # Compile the workflow into an executable graph
-    return workflow.compile()
+    compiled_workflow = workflow.compile()
+    
+    # Generate and save the workflow diagram as PNG
+    try:
+        from PIL import Image
+        import io
+        
+        # Get Mermaid diagram from the compiled workflow
+        mermaid_png = compiled_workflow.get_graph().draw_mermaid_png()
+        
+        # Save the PNG
+        workflow_filename = f"{experiment_id}_workflow.png"
+        workflow_path = os.path.join(output_dir, workflow_filename)
+        
+        with open(workflow_path, 'wb') as f:
+            f.write(mermaid_png)
+        
+        print(f"[SYSTEM] Workflow diagram saved to: {workflow_path}")
+    except Exception as e:
+        print(f"[SYSTEM] Warning: Could not generate workflow diagram: {str(e)}")
+    
+    return compiled_workflow
 
 def execute_experiment(
     experiment_description: str,
@@ -540,7 +574,8 @@ def execute_experiment(
     print(f"Experiment ID: {experiment_id}")
     print("=" * 60)
     
-    workflow = create_experiment_workflow()
+    output_dir = os.path.dirname(output_file_path)
+    workflow = create_experiment_workflow(experiment_id, output_dir)
     final_state = workflow.invoke(initial_state)
     
     return final_state
