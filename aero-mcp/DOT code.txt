@@ -1,0 +1,111 @@
+digraph AeroSandboxWorkflow {
+    // --- Global Graph Attributes ---
+    rankdir=TB;
+    // splines=curved; // Use curved lines for a smoother look
+    overlap=false;
+    nodesep=0.3;    // Increase spacing between nodes
+    ranksep=0.3;    // Increase spacing between ranks (main workflow)
+    fontname="Inter";
+    fontsize=12;
+
+    // --- Default Node Attributes ---
+    node [
+        shape=box,
+        style="rounded,filled",
+        fontname="Inter",
+        fontsize=11,
+        fillcolor="#E3F2FD" // Default: light blue for process
+    ];
+
+    // --- Default Edge Attributes ---
+    edge [
+        fontname="Inter",
+        fontsize=10,
+        penwidth=1.5,
+        color="#424242"
+    ];
+
+    // --- High-Level Workflow Nodes ---
+    workflow_start [label="Start Workflow", shape=ellipse, fillcolor="#C8E6C9"]; // Green for start
+    
+    prompts_node [label="Prompt Files", shape=cylinder, fillcolor="#B3E5FC"]; // Blue for data
+    llm_node [label="LLM", fillcolor="#D1C4E9"]; // Purple for external system
+    
+    generate_all_code [label="generate_all_code", fillcolor="#FFF9C4"]; // Yellow for key process
+    
+    create_framework [label="create_framework"];
+    run_experiment_node [label="run_experiment"];
+    should_correct_error [label="Error?", shape=diamond, fillcolor="#FFECB3"]; // Yellow for decision
+    correct_error [label="correct_error", fillcolor="#FFCDD2"]; // Red for error handling
+    clean_up [label="clean_up"];
+    workflow_end [label="End Workflow", shape=ellipse, fillcolor="#C8E6C9"]; // Green for end
+    
+    // --- Subprocess for the Experiment Framework ---
+    subgraph cluster_experiment_framework {
+        label = "Experiment Subprocess";
+        style="rounded,dashed";
+        fillcolor="whitesmoke";
+        penwidth=1.5;
+        color=gray;
+        
+        // MODIFIED: Added local ranksep to reduce vertical spacing inside this subgraph
+        ranksep=0.01; 
+
+        // Nodes from the original flowchart
+        exp_start [label="Start", shape=ellipse, fillcolor="#C8E6C9"];
+        exp_init_files [label="1. Create a default rectangular wing, \n default operating point", fillcolor="white"];
+        exp_setup_opti_vars [label="2. Setup optimization variables with bounds", shape=note, fillcolor="#EEEEEE"];
+        exp_build_wing_plane [label="3. Build the Wing and Airplane objects", fillcolor="white"];
+        exp_setup_vlm [label="4. Run the VLM analysis", fillcolor="white"];
+        exp_setup_opt_problem [label="5. Apply constraints and objective function", shape=note, fillcolor="#EEEEEE"];
+        exp_solve_opti [label="6. Solve the optimization problem", fillcolor="white"];
+        exp_visualize [label="7. Save resulting wing, operating point", fillcolor="white"];
+        exp_end [label="End", shape=ellipse, fillcolor="#C8E6C9"];
+
+        // Main Flow within the subprocess
+        exp_start -> exp_init_files -> exp_setup_opti_vars -> exp_build_wing_plane ->  exp_setup_vlm -> exp_setup_opt_problem -> exp_solve_opti -> exp_visualize -> exp_end [penwidth=2.0];
+    }
+    
+    // --- Global Data Nodes ---
+    experiment_data_node [label="Airplane.yaml \n Operating_point.yaml", shape=cylinder, fillcolor="#B3E5FC"];
+    experiment_results_node [label="Experiment Results", shape=cylinder, fillcolor="#B3E5FC"];
+
+    // --- Wire the High-Level Workflow Together ---
+    
+    // Entry point & Main Sequence
+    workflow_start -> generate_all_code;
+    generate_all_code -> create_framework;
+    create_framework -> run_experiment_node;
+    
+    // Code generation loop (Data and Control)
+    prompts_node -> generate_all_code [label="x2", style=dotted, color=black, constraint=false]; // Data feed
+    
+    generate_all_code -> llm_node [label="call x2", style=dashed, color="#673AB7"]; // Control: API call
+    llm_node -> generate_all_code [label="return code x2", dir=back, constraint=false, style=dashed, color="#673AB7"];
+
+    // Subprocess invocation (Control)
+    run_experiment_node -> exp_start [ltail=cluster_experiment_framework, style=dashed, penwidth=2, label="invoke", color="#0288D1"]; 
+    exp_end -> should_correct_error [lhead=cluster_experiment_framework, style=dashed, penwidth=2, color="#0288D1"]; 
+    
+    // Code insertion links (Control)
+    create_framework -> exp_setup_opti_vars [style=dashed, label="code insertion", constraint=false, color="#0288D1"];
+    create_framework -> exp_setup_opt_problem [style=dashed, label="code insertion", constraint=false, color="#0288D1"];
+    
+    // Conditional logic
+    should_correct_error -> correct_error [label="  yes", color="#D32F2F", penwidth=2.0];
+    should_correct_error -> clean_up [label="  no"];
+    
+    // Final steps
+    correct_error -> clean_up;
+    clean_up -> workflow_end;
+    
+    // Data flow (Output) - These are already unconstrained
+    exp_init_files -> experiment_data_node [label="save properties", style=dotted, constraint=false, color=black];
+    exp_visualize -> experiment_data_node [label="update properties", style=dotted, constraint=false, color=black];
+    clean_up -> experiment_results_node [label="save results", style=dotted, constraint=false, color=black];
+
+    // --- Data Node Alignment ---
+    // Group data nodes vertically using invisible edges.
+    prompts_node -> experiment_data_node [style=invis, weight=100];
+    experiment_data_node -> experiment_results_node [style=invis, weight=100];
+}
