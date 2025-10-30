@@ -1,0 +1,13 @@
+.. py:method:: Fuselage.area_projected(type = 'XY')
+
+   Returns the area of the fuselage as projected onto one of the principal planes.
+
+   :param type: A string, which determines which principal plane to use for projection. One of:
+
+                * "XY", in which case the projected area is onto the XY plane (i.e., top-down)
+
+                * "XZ", in which case the projected area is onto the XZ plane (i.e., side-view)
+
+   Returns: The projected area.
+
+

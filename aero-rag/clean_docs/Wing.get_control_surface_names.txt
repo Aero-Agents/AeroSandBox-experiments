@@ -1,0 +1,7 @@
+.. py:method:: Wing.get_control_surface_names()
+
+   Gets the names of all control surfaces on this wing.
+
+   :returns: A list of control surface names.
+
+

@@ -1,0 +1,5 @@
+.. py:method:: Atmosphere.temperature()
+
+   Returns the temperature, in Kelvin.
+
+

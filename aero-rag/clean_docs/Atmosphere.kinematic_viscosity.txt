@@ -1,0 +1,7 @@
+.. py:method:: Atmosphere.kinematic_viscosity()
+
+   Returns the kinematic viscosity (nu), in m^2/s.
+
+   Definitional.
+
+

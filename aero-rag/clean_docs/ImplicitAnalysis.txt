@@ -1,0 +1,10 @@
+.. py:class:: ImplicitAnalysis
+
+   Bases: :py:obj:`AeroSandboxObject`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: ImplicitAnalysis.initialize(init_method)

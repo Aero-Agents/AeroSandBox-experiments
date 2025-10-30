@@ -1,0 +1,14 @@
+.. py:class:: AeroSandboxObject
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:method:: AeroSandboxObject.__eq__(other)
+   .. py:method:: AeroSandboxObject.save(filename = None, verbose = True, automatically_add_extension = True)
+   .. py:method:: AeroSandboxObject.copy()
+   .. py:method:: AeroSandboxObject.deepcopy()
+   .. py:method:: AeroSandboxObject.substitute_solution(sol, inplace = None)

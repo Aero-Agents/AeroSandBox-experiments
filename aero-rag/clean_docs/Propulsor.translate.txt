@@ -1,0 +1,9 @@
+.. py:method:: Propulsor.translate(xyz)
+
+   Returns a copy of this propulsor that has been translated by `xyz`.
+
+   :param xyz: The amount to translate the propulsor, in meters. Given in aircraft geometry axes, as with everything else.
+
+   Returns: A copy of this propulsor, translated by `xyz`.
+
+

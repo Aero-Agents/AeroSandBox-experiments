@@ -1,0 +1,54 @@
+.. py:method:: Wing.mesh_thin_surface(method='tri', chordwise_resolution = 36, chordwise_spacing_function = np.cosspace, add_camber = True)
+
+   Meshes the mean camber line of the wing as a thin-sheet body.
+
+   Uses the `(points, faces)` standard mesh format. For reference on this format, see the documentation in
+   `aerosandbox.geometry.mesh_utilities`.
+
+   Order of faces:
+       * On the right wing (or, if `Wing.symmetric` is `False`, just the wing itself):
+           * First face is the face nearest the leading edge of the wing root.
+           * Proceeds along a chordwise strip to the trailing edge.
+           * Then, goes to the subsequent spanwise location and does another chordwise strip, et cetera until
+             we get to the wing tip.
+       * On the left wing (applicable only if `Wing.symmetric` is `True`):
+           * Same order: Starts at the root leading edge, goes in chordwise strips.
+
+   Order of vertices within each face:
+       * On the right wing (or, if `Wing.symmetric` is `False`, just the wing itself):
+           * Front-left
+           * Back-left
+           * Back-right
+           * Front-right
+       * On the left wing (applicable only if `Wing.symmetric` is `True`):
+           * Front-left
+           * Back-left
+           * Back-right
+           * Front-right
+
+   :param method: A string, which determines whether to mesh the fuselage as a series of quadrilaterals or triangles.
+
+                  * "quad" meshes the fuselage as a series of quadrilaterals.
+
+                  * "tri" meshes the fuselage as a series of triangles.
+   :param chordwise_resolution: Determines the number of chordwise panels to use in the meshing. [int]
+   :param chordwise_spacing_function: Determines how to space the chordwise panels. Can be `np.linspace` or
+   :param `np.cosspace`:
+   :type `np.cosspace`: a, b, n
+   :param or any other function of the call signature `f:
+   :type or any other function of the call signature `f: a, b, n
+   :param `n` points between `a` and `b`. [function]:
+   :param add_camber: Controls whether to mesh the thin surface with camber (i.e., mean camber line), or to just
+   :param mesh the flat planform. [bool]:
+
+   Returns: Standard unstructured mesh format: A tuple of `points` and `faces`, where:
+
+       * `points` is a `n x 3` array of points, where `n` is the number of points in the mesh.
+
+       * `faces` is a `m x 3` array of faces if `method` is "tri", or a `m x 4` array of faces if `method` is "quad".
+
+           * Each row of `faces` is a list of indices into `points`, which specifies a face.
+
+
+
+

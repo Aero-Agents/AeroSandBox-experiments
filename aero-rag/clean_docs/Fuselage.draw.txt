@@ -1,0 +1,11 @@
+.. py:method:: Fuselage.draw(*args, **kwargs)
+
+   An alias to the more general Airplane.draw() method. See there for documentation.
+
+   :param \*args: Arguments to pass through to Airplane.draw()
+   :param \*\*kwargs: Keyword arguments to pass through to Airplane.draw()
+
+   Returns: Same return as Airplane.draw()
+
+
+

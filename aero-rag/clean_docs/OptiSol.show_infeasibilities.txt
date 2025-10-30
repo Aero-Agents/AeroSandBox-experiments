@@ -1,0 +1,10 @@
+.. py:method:: OptiSol.show_infeasibilities(tol = 0.001)
+
+   Prints a summary of any violated constraints in the solution.
+
+   :param tol: The tolerance for violation. If the constraint is violated by less than this amount, it will not be
+               printed.
+
+   Returns: None (prints to console)
+
+

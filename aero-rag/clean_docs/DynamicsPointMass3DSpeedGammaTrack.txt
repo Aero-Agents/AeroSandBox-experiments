@@ -1,0 +1,66 @@
+.. py:class:: DynamicsPointMass3DSpeedGammaTrack(mass_props = None, x_e = 0, y_e = 0, z_e = 0, speed = 0, gamma = 0, track = 0, alpha = 0, beta = 0, bank = 0)
+
+   Bases: :py:obj:`aerosandbox.dynamics.point_mass.common_point_mass._DynamicsPointMassBaseClass`
+
+
+   Dynamics instance:
+   * simulating a point mass
+   * in 3D
+   * with velocity parameterized in speed-gamma-track space
+
+   State variables:
+       x_e: x-position, in Earth axes. [meters]
+       y_e: y-position, in Earth axes. [meters]
+       z_e: z-position, in Earth axes. [meters]
+       speed: Speed; equivalent to u_w, the x-velocity in wind axes. [m/s]
+       gamma: Flight path angle. [radians]
+       track: Track angle. [radians]
+           * Track of 0 == North == aligned with x_e axis
+           * Track of np.pi / 2 == East == aligned with y_e axis
+
+   Indirect control variables:
+       alpha: Angle of attack. [degrees]
+       beta: Sideslip angle. [degrees]
+       bank: Bank angle. [radians]
+
+   Control variables:
+       Fx_w: Force along the wind-x axis. [N]
+       Fy_w: Force along the wind-y axis. [N]
+       Fz_w: Force along the wind-z axis. [N]
+
+
+
+   .. py:attribute:: mass_props
+
+      For each state variable, self.state_var = state_var
+
+      For each indirect control variable, self.indirect_control_var = indirect_control_var
+
+      For each control variable, self.control_var = 0
+
+
+   .. py:property:: state
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+      Returns the state variables of this Dynamics instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+      This method should look something like:
+          >>> {
+          >>>     "x_e": self.x_e,
+          >>>     "u_e": self.u_e,
+          >>>     ...
+          >>> }
+
+
+   .. py:property:: control_variables
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+
+   .. py:method:: DynamicsPointMass3DSpeedGammaTrack.state_derivatives()
+   .. py:method:: DynamicsPointMass3DSpeedGammaTrack.convert_axes(x_from, y_from, z_from, from_axes, to_axes)
+   .. py:method:: DynamicsPointMass3DSpeedGammaTrack.add_force(Fx = 0, Fy = 0, Fz = 0, axes='wind')

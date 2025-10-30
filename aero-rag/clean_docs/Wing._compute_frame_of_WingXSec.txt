@@ -1,0 +1,10 @@
+.. py:method:: Wing._compute_frame_of_WingXSec(index)
+
+   Computes the local reference frame associated with a particular cross-section (XSec) of this wing.
+
+   :param index: Which cross-section (as indexed in Wing.xsecs) should we get the frame of?
+
+   :returns: A tuple of (xg_local, yg_local, zg_local), where each entry refers to the respective (normalized) axis of
+             the local reference frame of the WingXSec. Given in geometry axes.
+
+

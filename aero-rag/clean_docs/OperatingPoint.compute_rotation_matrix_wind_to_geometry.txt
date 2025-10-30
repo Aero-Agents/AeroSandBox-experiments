@@ -1,0 +1,8 @@
+.. py:method:: OperatingPoint.compute_rotation_matrix_wind_to_geometry()
+
+   Computes the 3x3 rotation matrix that transforms from wind axes to geometry axes.
+
+   Returns: a 3x3 rotation matrix.
+
+
+

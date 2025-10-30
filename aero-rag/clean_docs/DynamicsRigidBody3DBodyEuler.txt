@@ -1,0 +1,69 @@
+.. py:class:: DynamicsRigidBody3DBodyEuler(mass_props = None, x_e = 0, y_e = 0, z_e = 0, u_b = 0, v_b = 0, w_b = 0, phi = 0, theta = 0, psi = 0, p = 0, q = 0, r = 0)
+
+   Bases: :py:obj:`aerosandbox.dynamics.rigid_body.common_rigid_body._DynamicsRigidBodyBaseClass`
+
+
+   Dynamics instance:
+   * simulating a rigid body
+   * in 3D
+   * with velocity parameterized in body axes
+   * and angle parameterized in Euler angles
+
+   State variables:
+       x_e: x-position, in Earth axes. [meters]
+       y_e: y-position, in Earth axes. [meters]
+       z_e: z-position, in Earth axes. [meters]
+       u_b: x-velocity, in body axes. [m/s]
+       v_b: y-velocity, in body axes. [m/s]
+       w_b: z-velocity, in body axes. [m/s]
+       phi: roll angle. Uses yaw-pitch-roll Euler angle convention. [rad]
+       theta: pitch angle. Uses yaw-pitch-roll Euler angle convention. [rad]
+       psi: yaw angle. Uses yaw-pitch-roll Euler angle convention. [rad]
+       p: x-angular-velocity, in body axes. [rad/sec]
+       q: y-angular-velocity, in body axes. [rad/sec]
+       r: z-angular-velocity, in body axes. [rad/sec]
+
+   Control variables:
+       Fx_b: Force along the body-x axis. [N]
+       Fy_b: Force along the body-y axis. [N]
+       Fz_b: Force along the body-z axis. [N]
+       Mx_b: Moment about the body-x axis. [Nm]
+       My_b: Moment about the body-y axis. [Nm]
+       Mz_b: Moment about the body-z axis. [Nm]
+       hx_b: Angular momentum (e.g., propellers) about the body-x axis. [kg*m^2/sec]
+       hy_b: Angular momentum (e.g., propellers) about the body-y axis. [kg*m^2/sec]
+       hz_b: Angular momentum (e.g., propellers) about the body-z axis. [kg*m^2/sec]
+
+
+
+   .. py:attribute:: mass_props
+
+      For each state variable, self.state_var = state_var
+
+      For each indirect control variable, self.indirect_control_var = indirect_control_var
+
+      For each control variable, self.control_var = 0
+
+
+   .. py:property:: state
+
+      Returns the state variables of this Dynamics instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+      This method should look something like:
+          >>> {
+          >>>     "x_e": self.x_e,
+          >>>     "u_e": self.u_e,
+          >>>     ...
+          >>> }
+
+
+   .. py:property:: control_variables
+
+
+   .. py:method:: DynamicsRigidBody3DBodyEuler.state_derivatives()
+   .. py:method:: DynamicsRigidBody3DBodyEuler.convert_axes(x_from, y_from, z_from, from_axes, to_axes)
+   .. py:method:: DynamicsRigidBody3DBodyEuler.add_force(Fx = 0, Fy = 0, Fz = 0, axes='body')
+   .. py:method:: DynamicsRigidBody3DBodyEuler.add_moment(Mx = 0, My = 0, Mz = 0, axes='body')

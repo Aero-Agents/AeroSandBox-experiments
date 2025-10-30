@@ -1,0 +1,34 @@
+.. py:method:: Opti.subject_to(constraint, _stacklevel = 1)
+
+   Initialize a new equality or inequality constraint(s).
+
+   :param constraint: A constraint that you want to hold true at the optimum.
+
+                      Inequality example:
+
+                      >>> x = opti.variable()
+                      >>> opti.subject_to(x >= 5)
+
+                      Equality example; also showing that you can directly constrain functions of variables:
+
+                      >>> x = opti.variable()
+                      >>> f = np.sin(x)
+                      >>> opti.subject_to(f == 0.5)
+
+                      You can also pass in a list of multiple constraints using list syntax. For example:
+
+                      >>> x = opti.variable()
+                      >>> opti.subject_to([
+                      >>>     x >= 5,
+                      >>>     x <= 10
+                      >>> ])
+   :param _stacklevel: Optional and advanced, purely used for debugging. Allows users to correctly track where
+   :param constraints are declared in the event that they are subclassing `aerosandbox.Opti`. Modifies the:
+   :param stacklevel of the declaration tracked:
+   :param which is then presented using:
+   :param `aerosandbox.Opti.constraint_declaration()`.:
+
+   :returns: The dual variable associated with the new constraint. If the `constraint` input is a list, returns
+             a list of dual variables.
+
+

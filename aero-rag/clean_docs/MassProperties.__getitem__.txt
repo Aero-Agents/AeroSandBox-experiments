@@ -1,0 +1,12 @@
+.. py:method:: MassProperties.__getitem__(index)
+
+   Indexes one item from each attribute of an MassProperties instance.
+   Returns a new MassProperties instance.
+
+   :param index: The index that is being called; e.g.,:
+                 >>> first_mass_props = mass_props[0]
+
+   Returns: A new MassProperties instance, where each attribute is subscripted at the given value, if possible.
+
+
+

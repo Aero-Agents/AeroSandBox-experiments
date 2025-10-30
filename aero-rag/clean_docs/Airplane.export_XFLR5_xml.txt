@@ -1,0 +1,21 @@
+.. py:method:: Airplane.export_XFLR5_xml(filename, mass_props = None, include_fuselages = False, mainwing = None, elevator = None, fin = None)
+
+   Exports the airplane geometry to an XFLR5 `.xml` file. To import the `.xml` file into XFLR5, go to File ->
+   Import -> Import from XML.
+
+   :param filename: The filename to export to. Should include the ".xml" extension.
+   :param mass_props: The MassProperties object to use when exporting the airplane. If not specified, will default to
+                      a 1 kg point mass at the origin.
+
+                      - Note: XFLR5 does not natively support user-defined inertia tensors, so we have to synthesize an equivalent
+                      set of point masses to represent the inertia tensor.
+   :param include_fuselages: Whether to include fuselages in the export.
+   :param mainwing: The main wing of the airplane. If not specified, will default to the first wing in the airplane.
+   :param elevator: The elevator of the airplane. If not specified, will default to the second wing in the airplane.
+   :param fin: The fin of the airplane. If not specified, will default to the third wing in the airplane.
+
+   Returns: None, but exports the airplane geometry to an XFLR5 `.xml` file.
+
+       To import the `.xml` file into XFLR5, go to File -> Import -> Import from XML.
+
+

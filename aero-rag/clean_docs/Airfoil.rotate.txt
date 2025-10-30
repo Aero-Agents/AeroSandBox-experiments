@@ -1,0 +1,14 @@
+.. py:method:: Airfoil.rotate(angle, x_center = 0.0, y_center = 0.0)
+
+   Rotates the airfoil clockwise by the specified amount, in radians.
+
+   Rotates about the point (x_center, y_center), which is (0, 0) by default.
+
+   :param angle: Angle to rotate, counterclockwise, in radians.
+   :param x_center: The x-coordinate of the center of rotation.
+   :param y_center: The y-coordinate of the center of rotation.
+
+   Returns: The rotated Airfoil.
+
+
+

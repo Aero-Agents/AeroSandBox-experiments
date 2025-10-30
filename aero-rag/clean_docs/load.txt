@@ -1,0 +1,13 @@
+.. py:function:: load(filename, verbose = True)
+
+   Loads an AeroSandboxObject from a file.
+
+   Upon load, will compare metadata from the file to the current Python version and AeroSandbox version. If there are
+   any discrepancies, will raise a warning.
+
+   :param filename: The filename to load from. Should be a .asb file.
+   :param verbose: If True, prints messages to console on successful load.
+
+   Returns: An AeroSandboxObject.
+
+

@@ -1,0 +1,9 @@
+.. py:method:: AeroSandboxObject.substitute_solution(sol, inplace = None)
+
+   Substitutes a solution from CasADi's solver recursively as an in-place operation.
+
+   In-place operation. To make it not in-place, do `y = copy.deepcopy(x)` or similar first.
+   :param sol: OptiSol object.
+   :return:
+
+

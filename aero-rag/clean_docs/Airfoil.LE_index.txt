@@ -1,0 +1,5 @@
+.. py:method:: Airfoil.LE_index()
+
+   Returns the index of the leading edge point in the airfoil coordinates.
+
+

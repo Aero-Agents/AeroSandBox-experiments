@@ -1,0 +1,5 @@
+.. py:method:: Propulsor.xsec_area()
+
+   Returns the cross-sectional area of the propulsor, in m^2.
+
+

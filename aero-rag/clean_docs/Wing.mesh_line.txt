@@ -1,0 +1,22 @@
+.. py:method:: Wing.mesh_line(x_nondim = 0.25, z_nondim = 0, add_camber = True)
+
+   Meshes a line that goes through each of the WingXSec objects in this wing.
+
+   :param x_nondim: The nondimensional (chord-normalized) x-coordinate that the line should go through. Can either
+   :param be a single value used at all cross-sections:
+   :param or can be an iterable of values to be used at the:
+   :param respective cross-sections.:
+   :param z_nondim: The nondimensional (chord-normalized) y-coordinate that the line should go through. Here,
+   :param y-coordinate means the "vertical" component:
+   :type y-coordinate means the "vertical" component: think standard 2D airfoil axes
+   :param value used at all cross-sections:
+   :param or can be an iterable of values to be used at the respective cross:
+   :param sections.:
+   :param add_camber: Controls whether the camber of each cross-section's airfoil should be added to the line or
+   :param not. Essentially modifies `z_nondim` to be `z_nondim + camber`.:
+
+   Returns: A list of points, where each point is a 3-element array of the form `[x, y, z]`. Goes from the root
+   to the tip. Ignores any wing symmetry (e.g., only gives one side).
+
+
+

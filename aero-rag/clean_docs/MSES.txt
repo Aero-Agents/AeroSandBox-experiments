@@ -1,0 +1,54 @@
+.. py:class:: MSES(airfoil, n_crit = 9.0, xtr_upper = 1.0, xtr_lower = 1.0, max_iter = 100, mset_command = 'mset', mses_command = 'mses', mplot_command = 'mplot', use_xvfb = None, xvfb_command = 'xvfb-run -a', verbosity = 1, timeout_mset = 10, timeout_mses = 60, timeout_mplot = 10, working_directory = None, behavior_after_unconverged_run = 'reinitialize', mset_alpha = 0, mset_n = 141, mset_e = 0.4, mset_io = 37, mset_x = 0.85, mses_mcrit = 0.99, mses_mucon = -1.0)
+
+   Bases: :py:obj:`aerosandbox.common.ExplicitAnalysis`
+
+
+   An interface to MSES, MSET, and MPLOT, a 2D airfoil analysis system developed by Mark Drela at MIT.
+
+   Requires compiled binaries for all the programs to be on your computer;
+   MSES is available here: https://web.mit.edu/drela/Public/web/mses/
+   Academics can get a copy by emailing the MIT Tech. Licensing Office;
+   MIT affiliates can find a copy on Athena.
+
+   It is recommended (but not required) that you add MSES, MSET, and MPLOT to your system PATH environment variable
+   such that they can be called with the commands `mses`, `mset`, and `mplot`. If this is not the case, you need to
+   specify the path to these executables using the command arguments of the constructor.
+
+   -----
+   X11 Notes:
+
+   Note that MSES, MSET, and MPLOT by default open up X11 windows on your computer. If you prefer that this doesn't
+   happen (for extra speed), or if you cannot have this happen (e.g., you are computing in an environment without
+   proper X11 support, like Windows Subsystem for Linux), you should use XVFB. https://en.wikipedia.org/wiki/Xvfb
+
+   XVFB is a virtual "display" server that can receive X11 output and safely dump it. (If you don't use XVFB and you
+   don't have proper X11 support on your computer, this AeroSandbox MSES module will simply error out during the
+   MSET call - probably not what you want.)
+
+   To install XVFB on a Linux machine, use:
+
+   ```bash
+   sudo apt-get install xvfb
+   ```
+
+   Then, when instantiating this MSES instance in AeroSandbox, pass the `use_xvfb` flag to be True. Default behavior
+   here is that this class will look for the XVFB executable, `xvfb-run`, on your machine. If it finds it,
+   it will run with XVFB enabled. If it does not, it will run without XVFB.
+
+   -----
+
+   Usage example:
+
+   >>> ms = MSES(
+   >>>     airfoil=Airfoil("naca2412").repanel(n_points_per_side=100),
+   >>>     Re=1e6,
+   >>>     mach=0.2,
+   >>> )
+   >>>
+   >>> result_at_single_alpha = ms.alpha(5)
+   >>> #result_at_several_CLs = ms.cl([0.5, 0.7, 0.8, 0.9])
+   >>> result_at_multiple_alphas = ms.alpha([3, 5, 60]) # Note: if a result does not converge (such as the 60 degree case here), it will not be included in the results.
+
+
+
+   .. py:method:: MSES.run(alpha = 0.0, Re = 0.0, mach = 0.01)

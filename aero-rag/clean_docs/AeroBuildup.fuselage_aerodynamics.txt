@@ -1,0 +1,19 @@
+.. py:method:: AeroBuildup.fuselage_aerodynamics(fuselage, include_induced_drag = True)
+
+   Estimates the aerodynamic forces, moments, and derivatives on a fuselage in isolation.
+
+   Assumes:
+       * The fuselage is a body of revolution aligned with the x_b axis.
+       * The angle between the nose and the freestream is less than 90 degrees.
+
+   Moments are given with the reference at Fuselage [0, 0, 0].
+
+   Uses methods from Jorgensen, Leland Howard. "Prediction of Static Aerodynamic Characteristics for Slender Bodies
+   Alone and with Lifting Surfaces to Very High Angles of Attack". NASA TR R-474. 1977.
+
+   :param fuselage: A Fuselage object that you wish to analyze.
+
+   Returns:
+
+
+

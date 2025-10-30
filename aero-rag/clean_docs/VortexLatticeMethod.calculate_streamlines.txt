@@ -1,0 +1,23 @@
+.. py:method:: VortexLatticeMethod.calculate_streamlines(seed_points = None, n_steps = 300, length = None)
+
+   Computes streamlines, starting at specific seed points.
+
+   After running this function, a new instance variable `VortexLatticeFilaments.streamlines` is computed
+
+   Uses simple forward-Euler integration with a fixed spatial stepsize (i.e., velocity vectors are normalized
+   before ODE integration). After investigation, it's not worth doing fancier ODE integration methods (adaptive
+   schemes, RK substepping, etc.), due to the near-singular conditions near vortex filaments.
+
+   :param seed_points: A Nx3 ndarray that contains a list of points where streamlines are started. Will be
+   :param auto-calculated if not specified.:
+   :param n_steps: The number of individual streamline steps to trace. Minimum of 2.
+   :param length: The approximate total length of the streamlines desired, in meters. Will be auto-calculated if
+   :param not specified.:
+
+   :returns: a 3D array with dimensions: (n_seed_points) x (3) x (n_steps).
+             Consists of streamlines data.
+
+             Result is also saved as an instance variable, VortexLatticeMethod.streamlines.
+   :rtype: streamlines
+
+

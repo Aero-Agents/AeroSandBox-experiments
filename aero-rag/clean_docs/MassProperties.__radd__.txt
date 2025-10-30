@@ -1,0 +1,7 @@
+.. py:method:: MassProperties.__radd__(other)
+
+   Allows sum() to work with MassProperties objects.
+
+   Basically, makes addition commutative.
+
+

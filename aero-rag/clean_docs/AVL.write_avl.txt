@@ -1,0 +1,14 @@
+.. py:method:: AVL.write_avl(filepath = None)
+
+   Writes a .avl file corresponding to this airplane to a filepath.
+
+   For use with the AVL vortex-lattice-method aerodynamics analysis tool by Mark Drela at MIT.
+   AVL is available here: https://web.mit.edu/drela/Public/web/avl/
+
+   :param filepath: filepath (including the filename and .avl extension) [string]
+                    If None, this function returns the .avl file as a string.
+
+   Returns: None
+
+
+

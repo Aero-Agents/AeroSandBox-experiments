@@ -1,0 +1,9 @@
+.. py:class:: OptiSol(opti, cas_optisol)
+
+   .. py:method:: OptiSol.__call__(x)
+   .. py:method:: OptiSol._value_scalar(x)
+   .. py:method:: OptiSol.value(x, recursive = True, warn_on_unknown_types = False)
+   .. py:method:: OptiSol.stats()
+   .. py:method:: OptiSol.value_variables()
+   .. py:method:: OptiSol.value_parameters()
+   .. py:method:: OptiSol.show_infeasibilities(tol = 0.001)

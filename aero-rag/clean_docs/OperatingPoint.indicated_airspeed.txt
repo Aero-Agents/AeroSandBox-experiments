@@ -1,0 +1,5 @@
+.. py:method:: OperatingPoint.indicated_airspeed()
+
+   Returns the indicated airspeed associated with the current flight condition, in meters per second.
+
+

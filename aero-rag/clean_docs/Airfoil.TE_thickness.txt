@@ -1,0 +1,5 @@
+.. py:method:: Airfoil.TE_thickness()
+
+   Returns the thickness of the trailing edge of the airfoil.
+
+

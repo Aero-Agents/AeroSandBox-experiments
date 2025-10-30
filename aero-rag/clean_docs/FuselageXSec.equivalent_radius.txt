@@ -1,0 +1,18 @@
+.. py:method:: FuselageXSec.equivalent_radius(preserve='area')
+
+   Computes an equivalent radius for non-circular cross-sections. This may be necessary when doing analysis that
+   uses axisymmetric assumptions.
+
+   Can either hold area or perimeter fixed, depending on whether cross-sectional area or wetted area is more
+   important.
+
+   :param preserve: One of:
+
+                    * "area": holds the cross-sectional area constant
+
+                    * "perimeter": holds the cross-sectional perimeter (i.e., the wetted area of the Fuselage) constant
+
+   Returns: An equivalent radius value.
+
+
+

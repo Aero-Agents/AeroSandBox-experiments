@@ -1,0 +1,29 @@
+.. py:class:: Airplane(name = None, xyz_ref = None, wings = None, fuselages = None, propulsors = None, s_ref = None, c_ref = None, b_ref = None, analysis_specific_options = None)
+
+   Bases: :py:obj:`aerosandbox.AeroSandboxObject`
+
+
+   Definition for an airplane.
+
+   Anatomy of an Airplane:
+
+       An Airplane consists chiefly of a collection of wings and fuselages. These can be accessed with
+       `Airplane.wings` and `Airplane.fuselages`, which gives a list of those respective components. Each wing is a
+       Wing object, and each fuselage is a Fuselage object.
+
+
+
+   .. py:method:: Airplane.__repr__()
+   .. py:method:: Airplane.mesh_body(method='quad', thin_wings=False, stack_meshes=True)
+   .. py:method:: Airplane.draw(backend = 'pyvista', thin_wings = False, ax=None, use_preset_view_angle = None, set_background_pane_color = None, set_background_pane_alpha = None, set_lims = True, set_equal = True, set_axis_visibility = None, show = True, show_kwargs = None)
+   .. py:method:: Airplane.draw_wireframe(ax=None, color='k', thin_linewidth=0.2, thick_linewidth=0.5, fuselage_longeron_theta=None, use_preset_view_angle = None, set_background_pane_color = None, set_background_pane_alpha = None, set_lims = True, set_equal = True, set_axis_visibility = None, show = True)
+   .. py:method:: Airplane.draw_three_view(axs=None, style = 'shaded', show = True)
+   .. py:method:: Airplane.is_entirely_symmetric()
+   .. py:method:: Airplane.aerodynamic_center(chord_fraction = 0.25)
+   .. py:method:: Airplane.with_control_deflections(control_surface_deflection_mappings)
+   .. py:method:: Airplane.generate_cadquery_geometry(minimum_airfoil_TE_thickness = 0.001, fuselage_tol = 0.0001)
+   .. py:method:: Airplane.export_cadquery_geometry(filename, minimum_airfoil_TE_thickness = 0.001)
+   .. py:method:: Airplane.export_AVL(filename, include_fuselages = True)
+   .. py:method:: Airplane.export_XFLR(*args, **kwargs)
+   .. py:method:: Airplane.export_XFLR5_xml(filename, mass_props = None, include_fuselages = False, mainwing = None, elevator = None, fin = None)
+   .. py:method:: Airplane.export_OpenVSP_vspscript(filename)

@@ -1,0 +1,18 @@
+.. py:method:: MassProperties.is_physically_possible()
+
+   Checks whether it's possible for this MassProperties object to correspond to the mass properties of a real
+   physical object.
+
+   Assumes that all physically-possible objects have a positive mass (or density).
+
+   Some special edge cases:
+
+       - A MassProperties object with mass of 0 (i.e., null object) will return True. Note: this will return
+       True even if the inertia tensor is not zero (which would basically be infinitesimal point masses at
+       infinite distance).
+
+       - A MassProperties object that is a point mass (i.e., inertia tensor is all zeros) will return True.
+
+   :returns: True if the MassProperties object is physically possible, False otherwise.
+
+

@@ -1,0 +1,16 @@
+.. py:method:: Fuselage.fineness_ratio(assumed_shape='cylinder')
+
+   Approximates the fineness ratio using the volume and length. The fineness ratio of a fuselage is defined as:
+
+       FR = length / max_diameter
+
+   :param assumed_shape: A string, which determines the assumed shape of the fuselage for the approximation. One of:
+
+                         * "cylinder", in which case the fuselage is assumed to have a cylindrical shape.
+
+                         * "sears-haack", in which case the fuselage is assumed to have Sears-Haack fuselage shape.
+
+   Returns: An approximate value of the fuselage's fineness ratio.
+
+
+

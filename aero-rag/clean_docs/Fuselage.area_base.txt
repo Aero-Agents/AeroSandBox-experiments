@@ -1,0 +1,8 @@
+.. py:method:: Fuselage.area_base()
+
+   Returns the area of the base (i.e. "trailing edge") of the fuselage. Useful for certain types of drag
+   calculation.
+
+   Returns:
+
+

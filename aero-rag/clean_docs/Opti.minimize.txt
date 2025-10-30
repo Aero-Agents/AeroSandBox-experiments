@@ -1,0 +1,27 @@
+.. py:method:: Opti.minimize(f)
+
+     [INTERNAL]
+
+   ::
+
+     minimize(self, MX f)
+
+   Set objective.
+
+   Objective must be a scalar. Default objective: 0 When method is called
+
+   multiple times, the last call takes effect
+
+   Extra doc: https://github.com/casadi/casadi/wiki/L_1a
+
+   Doc source:
+   https://github.com/casadi/casadi/blob/develop/casadi/core/optistack.hpp#L133
+
+   Implementation:
+   https://github.com/casadi/casadi/blob/develop/casadi/core/optistack.cpp#L82-L88
+
+
+
+
+
+

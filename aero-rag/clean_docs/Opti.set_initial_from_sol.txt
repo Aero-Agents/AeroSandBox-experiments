@@ -1,0 +1,12 @@
+.. py:method:: Opti.set_initial_from_sol(sol, initialize_primals=True, initialize_duals=True)
+
+   Sets the initial value of all variables in the Opti object to the solution of another Opti instance. Useful
+   for warm-starting an Opti instance based on the result of another instance.
+
+   Args: sol: Takes in the solution object. Assumes that sol corresponds to exactly the same optimization
+   problem as this Opti instance, perhaps with different parameter values.
+
+   Returns: None (in-place)
+
+
+

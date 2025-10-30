@@ -1,0 +1,51 @@
+.. py:class:: ExplicitAnalysis
+
+   Bases: :py:obj:`AeroSandboxObject`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: default_analysis_specific_options
+      :type:  Dict[type, Dict[str, Any]]
+
+      This is part of AeroSandbox's "analysis-specific options" feature, which lets you "tag" geometry objects with
+      flags that change how different analyses act on them.
+
+      This variable, `default_analysis_specific_options`, allows you to specify default values for options that can be used for
+      specific problems.
+
+      This should be a dictionary, where: * keys are the geometry-like types that you might be interested in defining
+      parameters for. * values are dictionaries, where: * keys are strings that label a given option * values are
+      anything. These are used as the default values, in the event that the associated geometry doesn't override those.
+
+      An example of what this variable might look like, for a vortex-lattice method aerodynamic analysis:
+
+      >>> default_analysis_specific_options = {
+      >>>     Airplane: dict(
+      >>>         profile_drag_coefficient=0
+      >>>     ),
+      >>>     Wing    : dict(
+      >>>         wing_level_spanwise_spacing=True,
+      >>>         spanwise_resolution=12,
+      >>>         spanwise_spacing="cosine",
+      >>>         chordwise_resolution=12,
+      >>>         chordwise_spacing="cosine",
+      >>>         component=None,  # type: int
+      >>>         no_wake=False,
+      >>>         no_alpha_beta=False,
+      >>>         no_load=False,
+      >>>         drag_polar=dict(
+      >>>             CL1=0,
+      >>>             CD1=0,
+      >>>             CL2=0,
+      >>>             CD2=0,
+      >>>             CL3=0,
+      >>>             CD3=0,
+      >>>         ),
+      >>>     )
+      >>> }
+
+
+   .. py:method:: ExplicitAnalysis.get_options(geometry_object)

@@ -1,0 +1,20 @@
+.. py:class:: AirfoilInviscid(airfoil, op_point, ground_effect = False)
+
+   Bases: :py:obj:`aerosandbox.common.ImplicitAnalysis`
+
+
+   An implicit analysis for inviscid analysis of an airfoil (or family of airfoils).
+
+   Key outputs:
+
+       * AirfoilInviscid.Cl
+
+
+
+   .. py:method:: AirfoilInviscid.__repr__()
+   .. py:method:: AirfoilInviscid._setup_unknowns()
+   .. py:method:: AirfoilInviscid.calculate_velocity(x_field, y_field)
+   .. py:method:: AirfoilInviscid._enforce_governing_equations()
+   .. py:method:: AirfoilInviscid._calculate_forces()
+   .. py:method:: AirfoilInviscid.draw_streamlines(res=200, show=True)
+   .. py:method:: AirfoilInviscid.draw_cp(show=True)

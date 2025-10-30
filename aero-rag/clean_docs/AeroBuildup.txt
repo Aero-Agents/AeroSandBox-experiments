@@ -1,0 +1,65 @@
+.. py:class:: AeroBuildup(airplane, op_point, xyz_ref = None, model_size = 'small', include_wave_drag = True)
+
+   Bases: :py:obj:`aerosandbox.ExplicitAnalysis`
+
+
+   A workbook-style aerodynamics buildup.
+
+   Example usage:
+
+   >>> import aerosandbox as asb
+   >>> ab = asb.AeroBuildup(  # This sets up the analysis, but doesn't execute calculation
+   >>>     airplane=my_airplane,  # type: asb.Airplane
+   >>>     op_point=my_operating_point,  # type: asb.OperatingPoint
+   >>>     xyz_ref=[0.1, 0.2, 0.3],  # Moment reference and center of rotation.
+   >>> )
+   >>> aero = ab.run()  # This executes the actual aero analysis.
+   >>> aero_with_stability_derivs = ab.run_with_stability_derivatives()  # Same, but also gets stability derivatives.
+
+
+
+   .. py:attribute:: default_analysis_specific_options
+
+      This is part of AeroSandbox's "analysis-specific options" feature, which lets you "tag" geometry objects with
+      flags that change how different analyses act on them.
+
+      This variable, `default_analysis_specific_options`, allows you to specify default values for options that can be used for
+      specific problems.
+
+      This should be a dictionary, where: * keys are the geometry-like types that you might be interested in defining
+      parameters for. * values are dictionaries, where: * keys are strings that label a given option * values are
+      anything. These are used as the default values, in the event that the associated geometry doesn't override those.
+
+      An example of what this variable might look like, for a vortex-lattice method aerodynamic analysis:
+
+      >>> default_analysis_specific_options = {
+      >>>     Airplane: dict(
+      >>>         profile_drag_coefficient=0
+      >>>     ),
+      >>>     Wing    : dict(
+      >>>         wing_level_spanwise_spacing=True,
+      >>>         spanwise_resolution=12,
+      >>>         spanwise_spacing="cosine",
+      >>>         chordwise_resolution=12,
+      >>>         chordwise_spacing="cosine",
+      >>>         component=None,  # type: int
+      >>>         no_wake=False,
+      >>>         no_alpha_beta=False,
+      >>>         no_load=False,
+      >>>         drag_polar=dict(
+      >>>             CL1=0,
+      >>>             CD1=0,
+      >>>             CL2=0,
+      >>>             CD2=0,
+      >>>             CL3=0,
+      >>>             CD3=0,
+      >>>         ),
+      >>>     )
+      >>> }
+
+
+   .. py:method:: AeroBuildup.__repr__()
+   .. py:method:: AeroBuildup.run()
+   .. py:method:: AeroBuildup.run_with_stability_derivatives(alpha=True, beta=True, p=True, q=True, r=True)
+   .. py:method:: AeroBuildup.wing_aerodynamics(wing, include_induced_drag = True)
+   .. py:method:: AeroBuildup.fuselage_aerodynamics(fuselage, include_induced_drag = True)

@@ -1,0 +1,9 @@
+.. py:class:: ControlSurface(name = 'Untitled', symmetric = True, deflection = 0.0, hinge_point = 0.75, trailing_edge = True, analysis_specific_options = None)
+
+   Bases: :py:obj:`aerosandbox.common.AeroSandboxObject`
+
+
+   Definition for a control surface, which is attached to a particular WingXSec via WingXSec's `control_surfaces=[]` parameter.
+
+
+   .. py:method:: ControlSurface.__repr__()

@@ -1,0 +1,36 @@
+.. py:class:: Opti(variable_categories_to_freeze = None, cache_filename = None, load_frozen_variables_from_cache = False, save_to_cache_on_solve = False, ignore_violated_parametric_constraints = False, freeze_style = 'parameter')
+
+   Bases: :py:obj:`casadi.Opti`
+
+
+   The base class for mathematical optimization. For detailed usage, see the docstrings in its key methods:
+       * Opti.variable()
+       * Opti.subject_to()
+       * Opti.parameter()
+       * Opti.solve()
+
+   Example usage is as follows:
+
+   >>> opti = asb.Opti() # Initializes an optimization environment
+   >>> x = opti.variable(init_guess=5) # Initializes a new variable in that environment
+   >>> f = x ** 2 # Evaluates a (in this case, nonlinear) function based on a variable
+   >>> opti.subject_to(x > 3) # Adds a constraint to be enforced
+   >>> opti.minimize(f) # Sets the objective function as f
+   >>> sol = opti.solve() # Solves the problem using CasADi and IPOPT backend
+   >>> print(sol(x)) # Prints the value of x at the optimum.
+
+
+   .. py:method:: Opti.variable(init_guess = None, n_vars = None, scale = None, freeze = False, log_transform = False, category = 'Uncategorized', lower_bound = None, upper_bound = None, _stacklevel = 1)
+   .. py:method:: Opti.subject_to(constraint, _stacklevel = 1)
+   .. py:method:: Opti.minimize(f)
+   .. py:method:: Opti.maximize(f)
+   .. py:method:: Opti.parameter(value = 0.0, n_params = None)
+   .. py:method:: Opti.solve(parameter_mapping = None, max_iter = 1000, max_runtime = 1e+20, callback = None, verbose = True, jit = False, detect_simple_bounds = False, expand = False, options = None, behavior_on_failure = 'raise')
+   .. py:method:: Opti.solve_sweep(parameter_mapping, update_initial_guesses_between_solves=False, verbose=True, solve_kwargs = None, return_callable = False, garbage_collect_between_runs = False)
+   .. py:method:: Opti.find_variable_declaration(index, use_full_filename = False, return_string = False)
+   .. py:method:: Opti.find_constraint_declaration(index, use_full_filename = False, return_string = False)
+   .. py:method:: Opti.set_initial_from_sol(sol, initialize_primals=True, initialize_duals=True)
+   .. py:method:: Opti.save_solution()
+   .. py:method:: Opti.get_solution_dict_from_cache()
+   .. py:method:: Opti.derivative_of(variable, with_respect_to, derivative_init_guess, derivative_scale = None, method = 'trapezoidal', explicit = False, _stacklevel = 1)
+   .. py:method:: Opti.constrain_derivative(derivative, variable, with_respect_to, method = 'trapezoidal', _stacklevel = 1)

@@ -1,0 +1,5 @@
+.. py:method:: Atmosphere.pressure()
+
+   Returns the pressure, in Pascals.
+
+

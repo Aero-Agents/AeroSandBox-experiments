@@ -1,0 +1,10 @@
+.. py:method:: OperatingPoint.total_temperature()
+
+   Total (stagnation) temperature of the working fluid.
+
+   Assumes a calorically perfect gas (i.e. specific heats do not change across the isentropic deceleration).
+
+   Returns: Total temperature of the working fluid [K]
+
+
+

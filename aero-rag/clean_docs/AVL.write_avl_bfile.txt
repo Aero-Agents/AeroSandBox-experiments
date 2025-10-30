@@ -1,0 +1,17 @@
+.. py:method:: AVL.write_avl_bfile(fuselage, filepath = None, include_name = True)
+   :staticmethod:
+
+
+   Writes an AVL-compatible BFILE corresponding to this fuselage to a filepath.
+
+   For use with the AVL vortex-lattice-method aerodynamics analysis tool by Mark Drela at MIT.
+   AVL is available here: https://web.mit.edu/drela/Public/web/avl/
+
+   :param filepath: filepath (including the filename and .avl extension) [string]
+                    If None, this function returns the would-be file contents as a string.
+   :param include_name: Should the name of the fuselage be included in the .dat file? (This should be True for use with AVL.)
+
+   Returns:
+
+
+

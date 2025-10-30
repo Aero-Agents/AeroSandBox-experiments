@@ -1,0 +1,21 @@
+.. py:method:: FittedModel.goodness_of_fit(type='R^2')
+
+   Returns a metric of the goodness of the fit.
+
+   :param type: Type of metric to use for goodness of fit. One of:
+
+                * "R^2": The coefficient of determination. Strictly speaking only mathematically rigorous to use this
+                for linear fits.
+
+                    https://en.wikipedia.org/wiki/Coefficient_of_determination
+
+                * "mean_absolute_error" or "mae" or "L1": The mean absolute error of the fit.
+
+                * "root_mean_squared_error" or "rms" or "L2": The root mean squared error of the fit.
+
+                * "max_absolute_error" or "Linf": The maximum deviation of the fit from any of the data points.
+
+   Returns: The metric of the goodness of the fit.
+
+
+

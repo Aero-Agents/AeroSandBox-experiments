@@ -1,0 +1,9 @@
+.. py:method:: Airfoil.local_camber(x_over_c = np.linspace(0, 1, 101))
+
+   Returns the local camber of the airfoil at a given point or points.
+
+   :param x_over_c: The x/c locations to calculate the camber at [1D array, more generally, an iterable of floats]
+
+   :returns: Local camber of the airfoil (y/c) [1D array].
+
+

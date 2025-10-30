@@ -1,0 +1,35 @@
+.. py:method:: FuselageXSec.xsec_perimeter()
+
+   Computes the FuselageXSec's perimeter. ("Circumference" in the case of a circular cross-section.)
+
+   The computation method is a closed-form approximation for the perimeter of a superellipse. The exact equation
+   for the perimeter of a superellipse is quite long and is not repeated here for brevity; a Google search will
+   bring it up. More importantly, this exact equation can only be represented as an infinite sum - not
+   particularly useful for fast computation.
+
+   We replace this exact equation with the following closed-form approximation obtained from symbolic regression:
+
+       Imagine a superellipse centered on the origin of a 2D plane. Now, imagine that the superellipse is
+       stretched such that the first quadrant (e.g., x>0, y>0) goes from (1, 0) to (0, h). Assume it has shape
+       parameter s (where, as a reminder, s=1 is a diamond, s=2 is a circle, s=Inf is a square).
+
+       Then, the perimeter of that single quadrant is:
+
+       h + (((((s-0.88487077) * h + 0.2588574 / h) ^ exp(s / -0.90069205)) + h) + 0.09919785) ^ (-1.4812293 / s)
+
+       See `AeroSandbox/studies/SuperellipseProperties` for details about how this was obtained.
+
+   We can extrapolate from here to the general case of a superellipse, as shown in the code below.
+
+   This approximation has the following properties:
+
+       * For the s=1 case (diamond), the error is +0.2%.
+
+       * For the s=2 case (circle), the error is -0.1%.
+
+       * In the s -> infinity limit (square), the error is +0.1%.
+
+   Returns:
+
+
+

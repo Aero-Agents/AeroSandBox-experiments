@@ -1,0 +1,5 @@
+.. py:method:: OperatingPoint.mach()
+
+   Returns the Mach number associated with the current flight condition.
+
+

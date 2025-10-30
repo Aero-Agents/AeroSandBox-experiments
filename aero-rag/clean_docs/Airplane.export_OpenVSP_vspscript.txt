@@ -1,0 +1,12 @@
+.. py:method:: Airplane.export_OpenVSP_vspscript(filename)
+
+   Exports the airplane geometry to a `*.vspscript` file compatible with OpenVSP. To import the `.vspscript`
+   file into OpenVSP:
+
+   Open OpenVSP, then File -> Run Script -> Select the `.vspscript` file.
+
+   :param filename: The filename to export to, given as a string or Path. Should include the ".vspscript" extension.
+
+   Returns: A string of the file contents, and also saves the file to the specified filename
+
+

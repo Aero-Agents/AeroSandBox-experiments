@@ -1,0 +1,6 @@
+.. py:method:: Airplane.is_entirely_symmetric()
+
+   Returns a boolean describing whether the airplane is geometrically entirely symmetric across the XZ-plane.
+   :return: [boolean]
+
+

@@ -1,0 +1,7 @@
+.. py:method:: Atmosphere.density_altitude(method = 'approximate')
+
+   Returns the density altitude, in meters.
+
+   See https://en.wikipedia.org/wiki/Density_altitude
+
+

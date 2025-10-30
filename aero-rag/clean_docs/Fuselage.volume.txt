@@ -1,0 +1,11 @@
+.. py:method:: Fuselage.volume(_sectional = False)
+
+   Computes the volume of the Fuselage.
+
+   :param _sectional: A boolean. If False, returns the total volume. If True, returns a list of volumes for each of
+   :param the `n-1` lofted sections:
+   :type the `n-1` lofted sections: between the `n` fuselage cross-sections in fuselage.xsec
+
+   :returns: The computed volume.
+
+

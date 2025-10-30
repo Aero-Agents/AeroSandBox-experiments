@@ -1,0 +1,4 @@
+.. py:function:: docs()
+
+   Opens the AeroSandbox documentation.
+

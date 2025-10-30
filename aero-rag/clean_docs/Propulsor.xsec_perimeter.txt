@@ -1,0 +1,5 @@
+.. py:method:: Propulsor.xsec_perimeter()
+
+   Returns the cross-sectional perimeter of the propulsor, in m.
+
+

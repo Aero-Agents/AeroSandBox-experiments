@@ -1,0 +1,22 @@
+.. py:method:: Airplane.aerodynamic_center(chord_fraction = 0.25)
+
+   Computes the approximate location of the aerodynamic center of the wing.
+   Uses the generalized methodology described here:
+       https://core.ac.uk/download/pdf/79175663.pdf
+
+   :param chord_fraction: The position of the aerodynamic center along the MAC, as a fraction of MAC length.
+   :param Typically:
+   :type Typically: denoted `h_0` in the literature
+   :param this value:
+   :type this value: denoted `h_0` in the literature
+   :param wing-fuselage interactions can cause a forward shift to a value more like 0.1 or less. Citing Cook:
+   :param :
+   :param Michael V.:
+   :param "Flight Dynamics Principles":
+   :param 3rd Ed.:
+   :param Sect. 3.5.3 "Controls-fixed static stability". PDF:
+   :param https: //www.sciencedirect.com/science/article/pii/B9780080982427000031
+
+   Returns: The (x, y, z) coordinates of the aerodynamic center of the airplane.
+
+

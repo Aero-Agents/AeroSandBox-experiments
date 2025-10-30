@@ -1,0 +1,9 @@
+.. py:method:: OperatingPoint.energy_altitude()
+
+   Returns the energy altitude associated with the current flight condition, in meters.
+
+   The energy altitude is the altitude at which a stationary aircraft would have the same total energy (kinetic
+   + gravitational potential) as the aircraft at the current flight condition.
+
+
+

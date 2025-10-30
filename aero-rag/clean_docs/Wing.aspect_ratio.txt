@@ -1,0 +1,13 @@
+.. py:method:: Wing.aspect_ratio(type = 'geometric')
+
+   Computes the aspect ratio of the wing, with options for various ways of measuring this.
+
+    * geometric: geometric aspect ratio, computed in the typical fashion (b^2 / S).
+
+    * effective: Differs from the geometric aspect ratio only in the case of symmetric wings whose root
+    cross-section is not on the centerline. In these cases, it includes the span and area of the fictitious wing
+    center when computing aspect ratio.
+
+   :param type: One of the above options, as a string.
+
+

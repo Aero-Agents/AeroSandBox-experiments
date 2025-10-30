@@ -1,0 +1,5 @@
+.. py:method:: KulfanAirfoil.area()
+
+   Returns the area of the polygon.
+
+

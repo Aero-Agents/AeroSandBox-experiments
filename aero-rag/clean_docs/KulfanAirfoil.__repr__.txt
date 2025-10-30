@@ -1,0 +1,10 @@
+.. py:method:: KulfanAirfoil.__repr__()
+
+
+.. py:property:: kulfan_parameters
+
+
+.. py:property:: coordinates
+   :type: aerosandbox.numpy.ndarray
+
+

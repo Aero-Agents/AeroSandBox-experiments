@@ -1,0 +1,30 @@
+.. py:class:: InterpolatedModel(x_data_coordinates, y_data_structured, method = 'bspline', fill_value=np.nan)
+
+   Bases: :py:obj:`aerosandbox.modeling.surrogate_model.SurrogateModel`
+
+
+   A model that is interpolated to structured (i.e., gridded) N-dimensional data. Maps from R^N -> R^1.
+
+   You can evaluate this model at a given point by calling it just like a function, e.g.:
+
+   >>> y = my_interpolated_model(x)
+
+   The input to the model (`x` in the example above) is of the type:
+       * in the general N-dimensional case, a dictionary where: keys are variable names and values are float/array
+       * in the case of a 1-dimensional input (R^1 -> R^1), it can optionally just be a float/array.
+   If you're not sure what the input type of `my_interpolated_model` should be, just do:
+
+   >>> print(my_interpolated_model) # Displays the valid input type to the model
+
+   The output of the model (`y` in the example above) is always a float or array.
+
+   See the docstring __init__ method of InterpolatedModel for more details of how to instantiate and use InterpolatedModel.
+
+   One might have expected a interpolated model to be a literal Python function rather than a Python class - the
+   benefit of having InterpolatedModel as a class rather than a function is that you can easily save (pickle) classes
+   including data (e.g. parameters, x_data, y_data), but you can't do that with functions. And, because the
+   InterpolatedModel class has a __call__ method, you can basically still just think of it like a function.
+
+
+
+   .. py:method:: InterpolatedModel.__call__(x)

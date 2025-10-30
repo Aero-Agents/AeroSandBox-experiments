@@ -1,0 +1,15 @@
+.. py:method:: Airplane.generate_cadquery_geometry(minimum_airfoil_TE_thickness = 0.001, fuselage_tol = 0.0001)
+
+   Uses the CADQuery library (OpenCASCADE backend) to generate a 3D CAD model of the airplane.
+
+   :param minimum_airfoil_TE_thickness: The minimum thickness of the trailing edge of the airfoils, as a fraction
+   :param of each airfoil's chord. This will be enforced by thickening the trailing edge of the airfoils if:
+   :param necessary. This is useful for avoiding numerical issues in CAD software that can arise from extremely:
+   :param thin:
+   :type thin: i.e., <1e-6 meters
+   :param tol: The geometric tolerance (meters) to use when generating the CAD geometry. This is passed directly to the CADQuery
+
+   Returns: A CADQuery Workplane object containing the CAD geometry of the airplane.
+
+
+

@@ -1,0 +1,11 @@
+.. py:method:: Wing.draw_wireframe(*args, **kwargs)
+
+   An alias to the more general Airplane.draw_wireframe() method. See there for documentation.
+
+   :param \*args: Arguments to pass through to Airplane.draw_wireframe()
+   :param \*\*kwargs: Keyword arguments to pass through to Airplane.draw_wireframe()
+
+   Returns: Same return as Airplane.draw_wireframe()
+
+
+

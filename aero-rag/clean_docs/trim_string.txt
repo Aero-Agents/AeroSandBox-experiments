@@ -1,0 +1,10 @@
+.. py:function:: trim_string(string, length = 80)
+
+   Trims a string to be less than a given length. If the string would exceed the length, makes it end in ellipses ("…").
+
+   :param string: The string to be trimmed.
+   :param length: The length to trim the string to, including any ellipses that may be added.
+
+   Returns: The trimmed string, including ellipses if needed.
+
+

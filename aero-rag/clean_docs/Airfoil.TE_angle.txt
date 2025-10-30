@@ -1,0 +1,5 @@
+.. py:method:: Airfoil.TE_angle()
+
+   Returns the trailing edge angle of the airfoil, in degrees.
+
+

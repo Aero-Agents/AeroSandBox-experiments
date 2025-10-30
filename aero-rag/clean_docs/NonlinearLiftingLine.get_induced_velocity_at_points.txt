@@ -1,0 +1,10 @@
+.. py:method:: NonlinearLiftingLine.get_induced_velocity_at_points(points, vortex_strengths = None)
+
+   Computes the induced velocity at a set of points in the flowfield.
+
+   :param points: A Nx3 array of points that you would like to know the induced velocities at. Given in geometry axes.
+
+   Returns: A Nx3 of the induced velocity at those points. Given in geometry axes.
+
+
+

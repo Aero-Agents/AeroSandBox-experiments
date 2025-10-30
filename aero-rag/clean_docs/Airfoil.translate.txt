@@ -1,0 +1,10 @@
+.. py:method:: Airfoil.translate(translate_x = 0.0, translate_y = 0.0)
+
+   Translates an Airfoil by a given amount.
+   :param translate_x: Amount to translate in the x-direction
+   :param translate_y: Amount to translate in the y-direction
+
+   Returns: The translated Airfoil.
+
+
+

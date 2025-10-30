@@ -1,0 +1,7 @@
+.. py:method:: XFoil._default_keystrokes(airfoil_filename, output_filename)
+
+   Returns a list of XFoil keystrokes that are common to all XFoil runs.
+
+   :returns: A list of strings, each of which is a single XFoil keystroke to be followed by <enter>.
+
+

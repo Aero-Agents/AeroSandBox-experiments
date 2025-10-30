@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+aero-rag/chroma_db/
+
+aero-rag/aerosandbox.readthedocs.io
+aero-rag/full_docs.txt
+

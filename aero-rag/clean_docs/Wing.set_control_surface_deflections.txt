@@ -1,0 +1,11 @@
+.. py:method:: Wing.set_control_surface_deflections(control_surface_mappings)
+
+   Sets the deflection of all control surfaces on this wing, based on the provided mapping.
+
+   :param control_surface_mappings: A dictionary mapping control surface names to their deflection angles, in degrees.
+
+                                    Note: control surface names are set in the asb.ControlSurface constructor.
+
+   :returns: None. (in-place)
+
+

@@ -1,0 +1,6 @@
+.. py:function:: reflect_over_XZ_plane(input_vector)
+
+   Takes in a vector or an array and flips the y-coordinates.
+   :param input_vector: A vector or list of vectors to flip.
+   :return: Vector with flipped sign on y-coordinate.
+

@@ -1,0 +1,5 @@
+.. py:method:: OperatingPoint.equivalent_airspeed()
+
+   Returns the equivalent airspeed associated with the current flight condition, in meters per second.
+
+

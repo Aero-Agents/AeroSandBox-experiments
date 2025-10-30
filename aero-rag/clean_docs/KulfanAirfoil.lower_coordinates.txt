@@ -1,0 +1,10 @@
+.. py:method:: KulfanAirfoil.lower_coordinates(x_over_c = np.linspace(0, 1, 101))
+
+   Returns an Nx2 ndarray of [x, y] coordinates that describe the lower surface of the airfoil.
+
+   Order is from the leading edge to the trailing edge.
+
+   Includes the leading edge point; be careful about duplicates if using this method in conjunction with
+   Airfoil.upper_coordinates().
+
+

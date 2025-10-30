@@ -1,0 +1,10 @@
+.. py:method:: InterpolatedModel.__call__(x)
+
+   Evaluates the surrogate model at some given input x.
+
+   The input `x` is of the type:
+       * in the general N-dimensional case, a dictionary where keys are variable names and values are float/array.
+       * in the case of a 1-dimensional input (R^1 -> R^2), a float/array.
+
+
+

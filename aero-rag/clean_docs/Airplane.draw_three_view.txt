@@ -1,0 +1,22 @@
+.. py:method:: Airplane.draw_three_view(axs=None, style = 'shaded', show = True)
+
+   Draws a standard 4-panel three-view diagram of the airplane using Matplotlib backend. Creates a new figure.
+
+   :param axs: A 2D numpy array of Matplotlib axes objects, with shape at least (2, 2). Each subplot must be 3D. If
+   :param None:
+   :param creates a new figure with the required axes.:
+   :param style: Determines what drawing style to use for the three-view. A string, one of:
+
+                 * "shaded"
+                 * "wireframe"
+   :param show: A Boolean of whether to show the figure after creating it, or to hold it so that the user can
+   :param modify the figure further before showing.:
+
+   Returns: A 2D NumPy array of Matplotlib axes objects, with shape (2, 2). The axes are arranged as follows:
+
+           * axs[0, 0]: Top view
+           * axs[0, 1]: Front view
+           * axs[1, 0]: Side view
+           * axs[1, 1]: Isometric view
+
+

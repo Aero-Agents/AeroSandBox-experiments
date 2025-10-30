@@ -1,0 +1,10 @@
+.. py:method:: Wing.translate(xyz)
+
+   Translates the entire Wing by a certain amount.
+
+   :param xyz:
+
+   Returns: The new wing object.
+
+
+

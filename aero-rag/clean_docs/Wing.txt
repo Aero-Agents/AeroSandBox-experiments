@@ -1,0 +1,56 @@
+.. py:class:: Wing(name = None, xsecs = None, symmetric = False, color = None, analysis_specific_options = None, **kwargs)
+
+   Bases: :py:obj:`aerosandbox.common.AeroSandboxObject`
+
+
+   Definition for a Wing.
+
+   Anatomy of a Wing:
+
+       A wing consists chiefly of a collection of cross-sections, or "xsecs". A cross-section is a 2D "slice" of a
+       wing. These can be accessed with `Wing.xsecs`, which gives a list of xsecs in the Wing. Each xsec is a
+       WingXSec object, a class that is defined separately.
+
+       You may also see references to wing "sections", which are different than cross-sections (xsecs)! Sections are
+       the portions of the wing that are in between xsecs. In other words, a wing with N cross-sections (xsecs,
+       WingXSec objects) will always have N-1 sections. Sections are never explicitly defined, since you can get all
+       needed information by lofting from the adjacent cross-sections. For example, section 0 (the first one) is a
+       loft between cross-sections 0 and 1.
+
+       Wings are lofted linearly between cross-sections.
+
+   If the wing is symmetric across the XZ plane, just define the right half and supply `symmetric=True` in the
+   constructor.
+
+   If the wing is not symmetric across the XZ plane (e.g., a single vertical stabilizer), just define the wing.
+
+
+   .. py:method:: Wing.__repr__()
+   .. py:method:: Wing.translate(xyz)
+   .. py:method:: Wing.span(type = 'yz', include_centerline_distance=False, _sectional = False)
+   .. py:method:: Wing.area(type = 'planform', include_centerline_distance=False, _sectional = False)
+   .. py:method:: Wing.aspect_ratio(type = 'geometric')
+   .. py:method:: Wing.is_entirely_symmetric()
+   .. py:method:: Wing.mean_geometric_chord()
+   .. py:method:: Wing.mean_aerodynamic_chord()
+   .. py:method:: Wing.mean_twist_angle()
+   .. py:method:: Wing.mean_sweep_angle(x_nondim=0.25)
+   .. py:method:: Wing.mean_dihedral_angle(x_nondim=0.25)
+   .. py:method:: Wing.aerodynamic_center(chord_fraction = 0.25, _sectional=False)
+   .. py:method:: Wing.taper_ratio()
+   .. py:method:: Wing.volume(_sectional = False)
+   .. py:method:: Wing.get_control_surface_names()
+   .. py:method:: Wing.set_control_surface_deflections(control_surface_mappings)
+   .. py:method:: Wing.control_surface_area(by_name = None, type = 'planform')
+   .. py:method:: Wing.mesh_body(method='quad', chordwise_resolution = 36, chordwise_spacing_function_per_side = np.cosspace, mesh_surface = True, mesh_tips = True, mesh_trailing_edge = True, mesh_symmetric = True)
+   .. py:method:: Wing.mesh_thin_surface(method='tri', chordwise_resolution = 36, chordwise_spacing_function = np.cosspace, add_camber = True)
+   .. py:method:: Wing.mesh_line(x_nondim = 0.25, z_nondim = 0, add_camber = True)
+   .. py:method:: Wing.draw(*args, **kwargs)
+   .. py:method:: Wing.draw_wireframe(*args, **kwargs)
+   .. py:method:: Wing.draw_three_view(*args, **kwargs)
+   .. py:method:: Wing.subdivide_sections(ratio, spacing_function = np.linspace)
+   .. py:method:: Wing._compute_xyz_le_of_WingXSec(index)
+   .. py:method:: Wing._compute_xyz_te_of_WingXSec(index)
+   .. py:method:: Wing._compute_xyz_of_WingXSec(index, x_nondim, z_nondim)
+   .. py:method:: Wing._compute_frame_of_WingXSec(index)
+   .. py:method:: Wing._compute_frame_of_section(index)

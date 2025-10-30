@@ -1,0 +1,7 @@
+.. py:method:: WingXSec.xsec_area()
+
+   Computes the WingXSec's cross-sectional (xsec) area.
+
+   Returns: The (dimensional) cross-sectional area of the WingXSec.
+
+

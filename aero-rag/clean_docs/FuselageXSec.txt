@@ -1,0 +1,15 @@
+.. py:class:: FuselageXSec(xyz_c = None, xyz_normal = None, radius = None, width = None, height = None, shape = 2.0, analysis_specific_options = None)
+
+   Bases: :py:obj:`aerosandbox.AeroSandboxObject`
+
+
+   Definition for a fuselage cross-section ("X-section").
+
+
+   .. py:method:: FuselageXSec.__repr__()
+   .. py:method:: FuselageXSec.xsec_area()
+   .. py:method:: FuselageXSec.xsec_perimeter()
+   .. py:method:: FuselageXSec.compute_frame()
+   .. py:method:: FuselageXSec.get_3D_coordinates(theta = None)
+   .. py:method:: FuselageXSec.equivalent_radius(preserve='area')
+   .. py:method:: FuselageXSec.translate(xyz)

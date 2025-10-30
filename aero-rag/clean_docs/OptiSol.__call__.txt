@@ -1,0 +1,10 @@
+.. py:method:: OptiSol.__call__(x)
+
+   A shorthand alias for `sol.value(x)`. See `OptiSol.value()` documentation for details.
+
+   :param x: A Python data structure to substitute values into, using the solution in this OptiSol object.
+
+   :returns: A copy of `x`, where all symbolic optimization variables (recursively substituted at unlimited depth)
+             have been converted to float or array values.
+
+

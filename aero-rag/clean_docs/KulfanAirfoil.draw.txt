@@ -1,0 +1,11 @@
+.. py:method:: KulfanAirfoil.draw(*args, draw_markers=False, **kwargs)
+
+   Draw the airfoil object.
+
+   :param draw_mcl: Should we draw the mean camber line (MCL)? [boolean]
+   :param backend: Which backend should we use? "plotly" or "matplotlib"
+   :param show: Should we show the plot? [boolean]
+
+   Returns: None
+
+

@@ -1,0 +1,20 @@
+.. py:method:: Airplane.draw(backend = 'pyvista', thin_wings = False, ax=None, use_preset_view_angle = None, set_background_pane_color = None, set_background_pane_alpha = None, set_lims = True, set_equal = True, set_axis_visibility = None, show = True, show_kwargs = None)
+
+   Produces an interactive 3D visualization of the airplane.
+
+   :param backend: The visualization backend to use. Options are:
+
+                   * "matplotlib" for a Matplotlib backend
+                   * "pyvista" for a PyVista backend
+                   * "plotly" for a Plot.ly backend
+                   * "trimesh" for a trimesh backend
+   :param thin_wings: A boolean that determines whether to draw the full airplane (i.e. thickened, 3D bodies), or to use a
+   :param thin-surface representation for any Wing objects.:
+   :param show: A boolean that determines whether to display the object after plotting it. If False, the object is
+   :param returned but not displayed. If True:
+   :param the object is displayed and returned.:
+
+   Returns: The plotted object, in its associated backend format. Also displays the object if `show` is True.
+
+
+

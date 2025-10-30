@@ -1,0 +1,15 @@
+.. py:method:: OptiSol._value_scalar(x)
+
+   Gets the value of a variable at the solution point. For developer use - see following paragraph.
+
+   This method is basically a less-powerful version of calling `sol(x)` - if you're a
+       user and not a developer, you almost-certainly want to use that method instead, as those are less
+       fragile with respect to various input data types. This method exists only as an abstraction to make it easier
+       for other developers to subclass OptiSol, if they wish to intercept the variable substitution process.
+
+   :param x:
+
+   Returns:
+
+
+

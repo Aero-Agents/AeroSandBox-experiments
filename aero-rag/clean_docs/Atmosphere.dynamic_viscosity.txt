@@ -1,0 +1,13 @@
+.. py:method:: Atmosphere.dynamic_viscosity()
+
+   Returns the dynamic viscosity (mu), in kg/(m*s).
+
+   Based on Sutherland's Law, citing `https://www.cfd-online.com/Wiki/Sutherland's_law`.
+
+   According to Rathakrishnan, E. (2013). Theoretical aerodynamics. John Wiley & Sons.:
+   This relationship is valid from 0.01 to 100 atm, and between 0 and 3000K.
+
+   According to White, F. M., & Corfield, I. (2006). Viscous fluid flow (Vol. 3, pp. 433-434). New York: McGraw-Hill.:
+   The error is no more than approximately 2% for air between 170K and 1900K.
+
+

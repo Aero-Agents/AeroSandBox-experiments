@@ -1,0 +1,22 @@
+.. py:method:: XFoil.alpha(alpha, start_at = 0)
+
+   Execute XFoil at a given angle of attack, or at a sequence of angles of attack.
+
+   :param alpha: The angle of attack [degrees]. Can be either a float or an iterable of floats, such as an array.
+   :param start_at: Chooses whether to split a large sweep into two runs that diverge away from some central value,
+   :param to improve convergence. As an example:
+   :param if you wanted to sweep from alpha=-20 to alpha=20:
+   :param you might want:
+   :param to instead do two sweeps and stitch them together: 0 to 20, and 0 to -20. `start_at` can be either:
+
+                                                             * None, in which case the alpha inputs are run as a single sequence in the order given.
+
+                                                             * A float that corresponds to an angle of attack (in degrees), in which case the alpha inputs are
+                                                             split into two sequences that diverge from the `start_at` value. Successful runs are then sorted by
+                                                             `alpha` before returning.
+
+   Returns: A dictionary with the XFoil results. Dictionary values are arrays; they may not be the same shape as
+   your input array if some points did not converge.
+
+
+

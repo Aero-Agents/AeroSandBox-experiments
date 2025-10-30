@@ -1,0 +1,18 @@
+.. py:method:: Fuselage.mesh_line(y_nondim = 0.0, z_nondim = 0.0)
+
+   Returns points along a line that goes through each of the FuselageXSec objects in this Fuselage.
+
+   :param y_nondim: The nondimensional (width-normalized) y-coordinate that the line should go through. Can either
+   :param be a single value used at all cross-sections:
+   :param or can be an iterable of values to be used at the:
+   :param respective cross-sections.:
+   :param z_nondim: The nondimensional (height-normalized) z-coordinate that the line should go through. Can either
+   :param be a single value used at all cross-sections:
+   :param or can be an iterable of values to be used at the:
+   :param respective cross-sections.:
+
+   Returns: A list of points, where each point is a 3-element array of the form `[x, y, z]`. Goes from the nose
+   to the tail.
+
+
+

@@ -1,0 +1,7 @@
+.. py:method:: XFoil.open_interactive()
+
+   Opens a new terminal window and runs XFoil interactively. This is useful for detailed analysis or debugging.
+
+   Returns: None
+
+

@@ -1,0 +1,10 @@
+.. py:method:: OperatingPoint.pack_state(array_like_state = None)
+
+   'Packs' an array into a Dict that represents the state of the OperatingPoint.
+
+   :param array_like_state: Takes in an iterable that must have the same number of entries as the state vector of the OperatingPoint.
+
+   Returns: The Dict representation of the state that you gave.
+
+
+

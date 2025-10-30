@@ -1,0 +1,20 @@
+.. py:function:: mass_properties_from_radius_of_gyration(mass, x_cg = 0, y_cg = 0, z_cg = 0, radius_of_gyration_x = 0, radius_of_gyration_y = 0, radius_of_gyration_z = 0)
+
+   Returns the mass properties of an object, given its radius of gyration.
+
+   It's assumed that the principle axes of the inertia tensor are aligned with the coordinate axes.
+
+   This is a shorthand convenience function for common usage of the MassProperties constructor. For more detailed
+   use, use the MassProperties object directly.
+
+   :param mass: Mass [kg]
+   :param x_cg: x-position of the center of gravity
+   :param y_cg: y-position of the center of gravity
+   :param z_cg: z-position of the center of gravity
+   :param radius_of_gyration_x: Radius of gyration along the x-axis, about the center of gravity [m]
+   :param radius_of_gyration_y: Radius of gyration along the y-axis, about the center of gravity [m]
+   :param radius_of_gyration_z: Radius of gyration along the z-axis, about the center of gravity [m]
+
+   Returns: MassProperties object.
+
+

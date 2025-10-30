@@ -1,0 +1,9 @@
+.. py:method:: Airfoil.local_thickness(x_over_c = np.linspace(0, 1, 101))
+
+   Returns the local thickness of the airfoil at a given point or points.
+
+   :param x_over_c: The x/c locations to calculate the thickness at [1D array, more generally, an iterable of floats]
+
+   :returns: Local thickness of the airfoil (y/c) [1D array].
+
+

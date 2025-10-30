@@ -1,0 +1,12 @@
+.. py:method:: KulfanAirfoil.set_TE_thickness(thickness = 0.0)
+
+   Creates a modified copy of the KulfanAirfoil that has a specified trailing-edge thickness.
+
+   Note that the trailing-edge thickness is given nondimensionally (e.g., as a fraction of chord).
+
+   :param thickness: The target trailing-edge thickness, given nondimensionally (e.g., as a fraction of chord).
+
+   Returns: The modified KulfanAirfoil.
+
+
+

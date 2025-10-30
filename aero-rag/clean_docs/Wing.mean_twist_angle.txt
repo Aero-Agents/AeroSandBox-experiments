@@ -1,0 +1,6 @@
+.. py:method:: Wing.mean_twist_angle()
+
+   Returns the mean twist angle (in degrees) of the wing, weighted by area.
+   :return: mean twist angle (in degrees)
+
+

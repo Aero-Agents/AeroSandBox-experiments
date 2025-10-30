@@ -1,0 +1,75 @@
+.. py:class:: AeroComponentResults
+
+   .. py:method:: __repr__()
+
+
+   .. py:property:: F_b
+      :type: List[Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]]
+
+
+      An [x, y, z] list of forces in body axes [N]
+
+
+   .. py:property:: F_w
+      :type: List[Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]]
+
+
+      An [x, y, z] list of forces in wind axes [N]
+
+
+   .. py:property:: M_b
+      :type: List[Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]]
+
+
+      An [x, y, z] list of moments about body axes [Nm]
+
+
+   .. py:property:: M_w
+      :type: List[Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]]
+
+
+      An [x, y, z] list of moments about wind axes [Nm]
+
+
+   .. py:property:: L
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The lift force [N]. Definitionally, this is in wind axes.
+
+
+   .. py:property:: Y
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The side force [N]. Definitionally, this is in wind axes.
+
+
+   .. py:property:: D
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The drag force [N]. Definitionally, this is in wind axes.
+
+
+   .. py:property:: l_b
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The rolling moment [Nm] in body axes. Positive is roll-right.
+
+
+   .. py:property:: m_b
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The pitching moment [Nm] in body axes. Positive is nose-up.
+
+
+   .. py:property:: n_b
+      :type: Union[float, aerosandbox.aerodynamics.aero_3D.aero_buildup_submodels.fuselage_aerodynamics_utilities.np.ndarray]
+
+
+      The yawing moment [Nm] in body axes. Positive is nose-right.
+
+

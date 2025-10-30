@@ -1,0 +1,10 @@
+.. py:method:: Fuselage.translate(xyz)
+
+   Translates the entire Fuselage by a certain amount.
+
+   :param xyz:
+
+   Returns: self
+
+
+

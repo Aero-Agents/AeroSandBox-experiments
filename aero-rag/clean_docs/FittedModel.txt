@@ -1,0 +1,32 @@
+.. py:class:: FittedModel(model, x_data, y_data, parameter_guesses, parameter_bounds = None, residual_norm_type = 'L2', fit_type = 'best', weights = None, put_residuals_in_logspace = False, verbose=True)
+
+   Bases: :py:obj:`aerosandbox.modeling.surrogate_model.SurrogateModel`
+
+
+   A model that is fitted to data. Maps from R^N -> R^1.
+
+   You can evaluate this model at a given point by calling it just like a function, e.g.:
+
+   >>> my_fitted_model = FittedModel(...)  # See FittedModel.__init__ docstring for syntax
+   >>> y = my_fitted_model(x)
+
+   The input to the model (`x` in the example above) is of the type:
+       * in the general N-dimensional case, a dictionary where: keys are variable names and values are float/array
+       * in the case of a 1-dimensional input (R^1 -> R^1), a float/array.
+   If you're not sure what the input type of `my_fitted_model` should be, just do:
+
+   >>> print(my_fitted_model) # Displays the valid input type to the model
+
+   The output of the model (`y` in the example above) is always a float or array.
+
+   See the docstring __init__ method of FittedModel for more details of how to instantiate and use FittedModel.
+
+   One might have expected a fitted model to be a literal Python function rather than a Python class - the
+   benefit of having FittedModel as a class rather than a function is that you can easily save (pickle) classes
+   including data (e.g. parameters, x_data, y_data), but you can't do that with functions. And, because the
+   FittedModel class has a __call__ method, you can basically still just think of it like a function.
+
+
+
+   .. py:method:: FittedModel.__call__(x)
+   .. py:method:: FittedModel.goodness_of_fit(type='R^2')

@@ -1,0 +1,34 @@
+.. py:method:: Wing.control_surface_area(by_name = None, type = 'planform')
+
+   Computes the total area of all control surfaces on this wing, optionally filtered by their name.
+
+   Control surfaces are defined on a section-by-section basis, and are defined in the WingXSec constructor using
+   its `control_surfaces` argument.
+
+   Note: If redundant control surfaces are defined (e.g., elevons, as defined by separate ailerons + elevator),
+   the area will be duplicated.
+
+   If the wing is symmetric, control surfaces on both left/right sides are included in order to obtain the full area.
+
+   :param by_name: If not None, only control surfaces with this name will be included in the area calculation.
+
+                   Note: control surface names are set in the asb.ControlSurface constructor.
+   :param type: One of the following options, as a string:
+
+                * "planform" (default): First, lofts a quadrilateral mean camber surface between each WingXSec. Then,
+                computes the area of each of these sectional surfaces. Then, computes what fraction of this area is
+                control surface. Then, sums up all the areas and returns it. When airplane designers refer to
+                "control surface area" (in the absence of any other qualifiers), this is typically what they mean.
+
+                * "wetted": Computes the actual surface area of the control surface that is in contact with the air.
+                Will typically be a little more than double the "planform" area above; intuitively, this is because
+                it adds both the "top" and "bottom" surface areas. Accounts for airfoil thickness/shape effects.
+
+                * "xy" or "projected" or "top": Same as "planform", but each sectional surface is projected onto the XY plane
+                (i.e., top-down view) before computing the areas. Note that if you try to use this method with a
+                vertically-oriented wing, like most vertical stabilizers, you will get an area near zero.
+
+                * "xz" or "side": Same as "planform", but each sectional surface is projected onto the XZ plane before
+                computing the areas.
+
+

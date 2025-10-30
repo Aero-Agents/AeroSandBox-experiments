@@ -1,0 +1,63 @@
+.. py:method:: Opti.constrain_derivative(derivative, variable, with_respect_to, method = 'trapezoidal', _stacklevel = 1)
+
+   Adds a constraint to the optimization problem such that:
+
+       d(variable) / d(with_respect_to) == derivative
+
+   Can be used directly; also called indirectly by opti.derivative_of() for implicit derivative creation.
+
+   :param derivative: The derivative that is to be constrained here.
+   :param variable: The variable or quantity that you are taking the derivative of. The "numerator" of the
+   :param derivative:
+   :param in colloquial parlance.:
+   :param with_respect_to: The variable or quantity that you are taking the derivative with respect to. The
+   :param "denominator" of the derivative: In a typical example case, this `with_respect_to` parameter would be time. Please make sure that the
+                                           value of this parameter is monotonically increasing, otherwise you may get nonsensical answers.
+   :param in colloquial parlance.: In a typical example case, this `with_respect_to` parameter would be time. Please make sure that the
+                                   value of this parameter is monotonically increasing, otherwise you may get nonsensical answers.
+   :param method: The type of integrator to use to define this derivative. Options are:
+
+                  * "forward euler" - a first-order-accurate forward Euler method
+
+                      Citation: https://en.wikipedia.org/wiki/Euler_method
+
+                  * "backwards euler" - a first-order-accurate backwards Euler method
+
+                      Citation: https://en.wikipedia.org/wiki/Backward_Euler_method
+
+                  * "midpoint" or "trapezoid" - a second-order-accurate midpoint method
+
+                      Citation: https://en.wikipedia.org/wiki/Midpoint_method
+
+                  * "simpson" - Simpson's rule for integration
+
+                      Citation: https://en.wikipedia.org/wiki/Simpson%27s_rule
+
+                  * "runge-kutta" or "rk4" - a fourth-order-accurate Runge-Kutta method. I suppose that technically,
+                  "forward euler", "backward euler", and "midpoint" are all (lower-order) Runge-Kutta methods...
+
+                      Citation: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods#The_Runge%E2%80%93Kutta_method
+
+                  * "runge-kutta-3/8" - A modified version of the Runge-Kutta 4 proposed by Kutta in 1901. Also
+                  fourth-order-accurate, but all of the error coefficients are smaller than they are in the standard
+                  Runge-Kutta 4 method. The downside is that more floating point operations are required per timestep,
+                  as the Butcher tableau is more dense (i.e. not banded).
+
+                      Citation: Kutta, Martin (1901), "Beitrag zur näherungsweisen Integration totaler
+                      Differentialgleichungen", Zeitschrift für Mathematik und Physik, 46: 435–453
+   :param Note that all methods are expressed as integrators rather than differentiators; this prevents:
+   :param singularities from forming in the limit of timestep approaching zero. (For those coming from the PDE:
+   :param world:
+   :param this is analogous to using finite volume methods rather than finite difference methods to allow:
+   :param shock capturing.):
+   :param _stacklevel: Optional and advanced, purely used for debugging. Allows users to correctly track where
+   :param constraints are declared in the event that they are subclassing `aerosandbox.Opti`. Modifies the:
+   :param stacklevel of the declaration tracked:
+   :param which is then presented using:
+   :param `aerosandbox.Opti.variable_declaration:
+   :type `aerosandbox.Opti.variable_declaration: )` and `aerosandbox.Opti.constraint_declaration(
+
+   Returns: None (adds constraint in-place).
+
+
+

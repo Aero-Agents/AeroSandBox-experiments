@@ -1,0 +1,7 @@
+.. py:method:: AVL.open_interactive()
+
+   Opens a new terminal window and runs AVL interactively. This is useful for detailed analysis or debugging.
+
+   Returns: None
+
+

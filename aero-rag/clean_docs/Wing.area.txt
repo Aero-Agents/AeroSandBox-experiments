@@ -1,0 +1,39 @@
+.. py:method:: Wing.area(type = 'planform', include_centerline_distance=False, _sectional = False)
+
+   Computes the wing area, with options for various ways of measuring this (see `type` argument):
+
+   If the wing is symmetric, both left/right sides are included in order to obtain the full area. In the case
+   where the root cross-section is not coincident with the center plane (e.g., XZ plane), this function's
+   behavior depends on the `include_centerline_distance` argument.
+
+   :param type: One of the following options, as a string:
+
+                * "planform" (default): First, lofts a quadrilateral mean camber surface between each WingXSec. Then,
+                computes the area of each of these sectional surfaces. Then, sums up all the areas and returns it.
+                When airplane designers refer to "wing area" (in the absence of any other qualifiers),
+                this is typically what they mean.
+
+                * "wetted": Computes the actual surface area of the wing that is in contact with the air. Will
+                typically be a little more than double the "planform" area above; intuitively, this is because it
+                adds both the "top" and "bottom" surface areas. Accounts for airfoil thickness/shape effects.
+
+                * "xy" or "projected" or "top": Same as "planform", but each sectional surface is projected onto the XY plane
+                (i.e., top-down view) before computing the areas. Note that if you try to use this method with a
+                vertically-oriented wing, like most vertical stabilizers, you will get an area near zero.
+
+                * "xz" or "side": Same as "planform", but each sectional surface is projected onto the XZ plane before
+                computing the areas.
+   :param include_centerline_distance: A boolean flag that tells the function what to do if a wing's root chord is
+   :param not coincident with the centerline plane:
+                                                    * If True, we first figure out which WingXSec is closest to the centerline plane (i.e., XZ plane).
+                                                    Then, we imagine that this WingXSec is extruded along the Y axis to the centerline plane (assuming a
+                                                    straight extrusion to produce a rectangular mid-camber surface). In doing so, we use the wing
+                                                    geometric chord as the extrusion width. We then add the area of this fictitious surface to the area
+                                                    calculation.
+
+                                                    * If False, this function will simply ignore this fictitious wing area. This is the default behavior.
+   :type not coincident with the centerline plane: i.e., XZ plane
+   :param _sectional: A boolean. If False, returns the total area. If True, returns a list of areas for each of the
+                      `n-1` lofted sections (between the `n` wing cross-sections in wing.xsec).
+
+

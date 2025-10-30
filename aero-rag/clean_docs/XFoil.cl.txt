@@ -1,0 +1,22 @@
+.. py:method:: XFoil.cl(cl, start_at = 0)
+
+   Execute XFoil at a given lift coefficient, or at a sequence of lift coefficients.
+
+   :param cl: The lift coefficient [-]. Can be either a float or an iterable of floats, such as an array.
+   :param start_at: Chooses whether to split a large sweep into two runs that diverge away from some central value,
+   :param to improve convergence. As an example:
+   :param if you wanted to sweep from cl=-1.5 to cl=1.5:
+   :param you might want to:
+   :param instead do two sweeps and stitch them together: 0 to 1.5, and 0 to -1.5. `start_at` can be either:
+
+                                                          * None, in which case the cl inputs are run as a single sequence in the order given.
+
+                                                          * A float that corresponds to an lift coefficient, in which case the cl inputs are
+                                                          split into two sequences that diverge from the `start_at` value. Successful runs are then sorted by
+                                                          `alpha` before returning.
+
+   Returns: A dictionary with the XFoil results. Dictionary values are arrays; they may not be the same shape as
+   your input array if some points did not converge.
+
+
+

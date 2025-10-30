@@ -1,0 +1,5 @@
+.. py:method:: MassProperties.__array__(dtype='O')
+
+   Allows NumPy array creation without infinite recursion in __len__ and __getitem__.
+
+

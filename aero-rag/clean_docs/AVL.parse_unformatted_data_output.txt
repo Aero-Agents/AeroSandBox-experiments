@@ -1,0 +1,74 @@
+.. py:method:: AVL.parse_unformatted_data_output(s, data_identifier = ' = ', cast_outputs_to_float = True, overwrite = None)
+   :staticmethod:
+
+
+   Parses a (multiline) string of unformatted data into a nice and tidy dictionary.
+
+   The expected input string looks like what you might get as an output from AVL (or many other Drela codes),
+   which may list data in ragged order.
+
+   An example input `s` that you might want to parse could look like the following:
+
+   ```
+    Standard axis orientation,  X fwd, Z down
+
+    Run case:  -unnamed-
+
+     Alpha =   0.43348     pb/2V =  -0.00000     p'b/2V =  -0.00000
+     Beta  =   0.00000     qc/2V =   0.00000
+     Mach  =     0.003     rb/2V =  -0.00000     r'b/2V =  -0.00000
+
+     CXtot =  -0.02147     Cltot =   0.00000     Cl'tot =   0.00000
+     CYtot =   0.00000     Cmtot =   0.28149
+     CZtot =  -1.01474     Cntot =  -0.00000     Cn'tot =  -0.00000
+
+     CLtot =   1.01454
+     CDtot =   0.02915
+     CDvis =   0.00000     CDind = 0.0291513
+     CLff  =   1.00050     CDff  = 0.0297201    | Trefftz
+     CYff  =   0.00000         e =    0.9649    | Plane
+   ```
+
+   Here, this function will go through this string and extract each key-value pair, as denoted by the data
+   identifier (by default, " = "). It will pull the next whole word without spaces to the left as the key,
+   and it will pull the next whole word without spaces to the right as the value. Together, these will be
+   returned as a Dict.
+
+   So, the output for the input above would be:
+   {
+       'Alpha' : 0.43348,
+       'pb/2V' : -0.00000,
+       'p'b/2V' : -0.00000,
+       'Beta' : 0.00000,
+       # and so on...
+   }
+
+   :param s: The input string to identify. Can be multiline.
+   :param data_identifier: The triggering substring for a new key-value pair. By default, it's " = ",
+   :param which is convention in many output files from Mark Drela's codes. Be careful if you decide to change this:
+   :param to "=":
+   :type to "=": '======='
+   :param as you could pick up on heading separators:
+   :type as you could pick up on heading separators: '======='
+   :param cast_outputs_to_float: If this boolean flag is set true, the values of the key-value pairs are cast to
+   :param floating-point numbers before returning:
+   :type floating-point numbers before returning: as opposed to the default type, string
+   :param cast:
+   :param a NaN is returned (guaranteeing that you can do floating-point math with the outputs in downstream:
+   :param applications.):
+   :param overwrite: Determines the behavior if you find a key that's already in the dictionary.
+
+                     * By default, value is None. In this case, an error is raised.
+
+                     * If you set it to True, the new value will overwrite the old one. Thus, your dictionary will have
+                     the last matching value from the string.
+
+                     * If you set it to False, the new value will be discarded. Thus, your dictionary will have the first
+                     matching value from the string.
+
+   Returns: A dictionary of key-value pairs, corresponding to the unformatted data in the input string.
+
+       Keys are strings, values are floats if `cast_outputs_to_float` is True, otherwise also strings.
+
+
+

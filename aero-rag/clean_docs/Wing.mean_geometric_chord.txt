@@ -1,0 +1,6 @@
+.. py:method:: Wing.mean_geometric_chord()
+
+   Returns the mean geometric chord of the wing (S/b).
+   :return:
+
+

@@ -1,0 +1,5 @@
+.. py:method:: MassProperties.__add__(other)
+
+   Combines one MassProperties object with another.
+
+

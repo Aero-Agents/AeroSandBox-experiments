@@ -1,0 +1,34 @@
+.. py:method:: FuselageXSec.get_3D_coordinates(theta = None)
+
+   Samples points from the perimeter of this FuselageXSec.
+
+   :param theta: Coordinate in the tangential-ish direction to sample points at. Given in the 2D FuselageXSec
+   :param coordinate system:
+                             * y_2D points along the (global) y_g
+                             * z_2D points along the (global) z_g
+
+                             In other words, a value of:
+
+                                 * theta=0     -> samples points from the right side of the FuselageXSec
+                                 * theta=pi/2  -> samples points from the top of the FuselageXSec
+                                 * theta=pi    -> samples points from the left side of the FuselageXSec
+                                 * theta=3pi/2 -> samples points from the bottom of the FuselageXSec
+   :param where:
+                 * y_2D points along the (global) y_g
+                 * z_2D points along the (global) z_g
+
+                 In other words, a value of:
+
+                     * theta=0     -> samples points from the right side of the FuselageXSec
+                     * theta=pi/2  -> samples points from the top of the FuselageXSec
+                     * theta=pi    -> samples points from the left side of the FuselageXSec
+                     * theta=3pi/2 -> samples points from the bottom of the FuselageXSec
+
+   Returns: Points sampled from the perimeter of the FuselageXSec, as a [x, y, z] tuple.
+
+       If theta is a float, then each of x, y, and z will be floats.
+
+       If theta is an array, then x, y, and z will also be arrays of the same size.
+
+
+

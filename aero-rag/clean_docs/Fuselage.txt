@@ -1,0 +1,40 @@
+.. py:class:: Fuselage(name = 'Untitled', xsecs = None, color = None, analysis_specific_options = None, **kwargs)
+
+   Bases: :py:obj:`aerosandbox.AeroSandboxObject`
+
+
+   Definition for a Fuselage or other slender body (pod, fuel tank, etc.).
+
+   Anatomy of a Fuselage:
+
+       A fuselage consists chiefly of a collection of cross-sections, or "xsecs". A cross-section is a 2D "slice" of
+       a fuselage. These can be accessed with `Fuselage.xsecs`, which gives a list of xsecs in the Fuselage. Each
+       xsec is a FuselageXSec object, a class that is defined separately.
+
+       You may also see references to fuselage "sections", which are different from cross-sections (xsecs)! Sections
+       are the portions of the fuselage that are in between xsecs. In other words, a fuselage with N cross-sections
+       (xsecs, FuselageXSec objects) will always have N-1 sections. Sections are never explicitly defined,
+       since you can get all needed information by lofting from the adjacent cross-sections. For example,
+       section 0 (the first one) is a loft between cross-sections 0 and 1.
+
+       Fuselages are lofted linearly between cross-sections.
+
+
+
+   .. py:method:: Fuselage.__repr__()
+   .. py:method:: Fuselage.add_loft(kind, to_xsec, from_xsec = None, n_points = 5, spacing = np.cosspace)
+   .. py:method:: Fuselage.translate(xyz)
+   .. py:method:: Fuselage.area_wetted()
+   .. py:method:: Fuselage.area_projected(type = 'XY')
+   .. py:method:: Fuselage.area_base()
+   .. py:method:: Fuselage.fineness_ratio(assumed_shape='cylinder')
+   .. py:method:: Fuselage.length()
+   .. py:method:: Fuselage.volume(_sectional = False)
+   .. py:method:: Fuselage.x_centroid_projected(type = 'XY')
+   .. py:method:: Fuselage.mesh_body(method='quad', tangential_resolution = 36)
+   .. py:method:: Fuselage.mesh_line(y_nondim = 0.0, z_nondim = 0.0)
+   .. py:method:: Fuselage.draw(*args, **kwargs)
+   .. py:method:: Fuselage.draw_wireframe(*args, **kwargs)
+   .. py:method:: Fuselage.draw_three_view(*args, **kwargs)
+   .. py:method:: Fuselage.subdivide_sections(ratio, spacing_function = np.linspace)
+   .. py:method:: Fuselage._compute_frame_of_FuselageXSec(index)

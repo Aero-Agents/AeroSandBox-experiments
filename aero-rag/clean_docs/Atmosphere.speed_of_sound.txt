@@ -1,0 +1,5 @@
+.. py:method:: Atmosphere.speed_of_sound()
+
+   Returns the speed of sound, in m/s.
+
+

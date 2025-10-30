@@ -1,0 +1,36 @@
+.. py:method:: FuselageXSec.xsec_area()
+
+   Computes the FuselageXSec's cross-sectional (xsec) area.
+
+   The computation method is a closed-form approximation for the area of a superellipse. The exact equation for
+   the area of a superellipse with shape parameter `s` is:
+
+       area = width * height * (gamma(1 + 1/n))^2 / gamma(1 + 2/n)
+
+   where gamma() is the gamma function. The gamma function is (relatively) computationally expensive to evaluate
+   and differentiate, so we replace this area calculation with a closed-form approximation (with essentially no
+   loss in accuracy):
+
+       area = width * height / (s^-1.8717618013591173 + 1)
+
+   This approximation has the following properties:
+
+       * It is numerically exact for the case of s = 1 (a diamond)
+
+       * It is numerically exact for the case of s = 2 (a circle)
+
+       * It is correct in the asymptotic limit where s -> infinity (a square)
+
+       * In the range of sensible s values (1 < s < infinity), its error is less than 0.6%.
+
+       * It always produces a positive area for any physically-meaningful value of s (s > 0). In the range of s
+       values where s is physically-meaningful but not in a sensible range (0 < s < 1), this equation will
+       over-predict area.
+
+   The value of the constant seen in this expression (1.872...) is given by log(4/pi - 1) / log(2), and it is
+   chosen as such so that the expression is exactly correct in the s=2 (circle) case.
+
+   Returns:
+
+
+

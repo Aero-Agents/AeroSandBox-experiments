@@ -1,0 +1,11 @@
+.. py:class:: WingXSec(xyz_le = None, chord = 1.0, twist = 0.0, airfoil = None, control_surfaces = None, analysis_specific_options = None, **deprecated_kwargs)
+
+   Bases: :py:obj:`aerosandbox.common.AeroSandboxObject`
+
+
+   Definition for a wing cross-section ("X-section").
+
+
+   .. py:method:: WingXSec.__repr__()
+   .. py:method:: WingXSec.translate(xyz)
+   .. py:method:: WingXSec.xsec_area()

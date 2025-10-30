@@ -1,0 +1,15 @@
+.. py:method:: KulfanAirfoil.repanel(n_points_per_side = 100, spacing_function_per_side=np.cosspace)
+
+   Returns a repaneled copy of the airfoil with cosine-spaced coordinates on the upper and lower surfaces.
+
+   :param n_points_per_side: Number of points per side (upper and lower) of the airfoil [int]
+
+                             Notes: The number of points defining the final airfoil will be `n_points_per_side * 2 - 1`,
+                             since one point (the leading edge point) is shared by both the upper and lower surfaces.
+   :param spacing_function_per_side: Determines how to space the points on each side of the airfoil. Can be
+                                     `np.linspace` or `np.cosspace`, or any other function of the call signature `f(a, b, n)` that returns
+                                     a spaced array of `n` points between `a` and `b`. [function]
+
+   Returns: A copy of the airfoil with the new coordinates.
+
+

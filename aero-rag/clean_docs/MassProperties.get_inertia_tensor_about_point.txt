@@ -1,0 +1,18 @@
+.. py:method:: MassProperties.get_inertia_tensor_about_point(x = 0.0, y = 0.0, z = 0.0, return_tensor = True)
+
+   Returns the inertia tensor about an arbitrary point.
+   Using https://en.wikipedia.org/wiki/Parallel_axis_theorem#Tensor_generalization
+
+   :param x: x-position of the new point, in the same axes as this MassProperties instance is specified in.
+   :param y: y-position of the new point, in the same axes as this MassProperties instance is specified in.
+   :param z: z-position of the new point, in the same axes as this MassProperties instance is specified in.
+   :param return_tensor: A switch for the desired return type; see below for details. [boolean]
+
+   :returns:     Returns the new inertia tensor, as a 2D numpy ndarray.
+             If `return_tensor` is False:
+                 Returns the components of the new inertia tensor, as a tuple.
+                 If J is the new inertia tensor, the tuple returned is:
+                 (Jxx, Jyy, Jzz, Jxy, Jyz, Jxz)
+   :rtype: If `return_tensor` is True
+
+

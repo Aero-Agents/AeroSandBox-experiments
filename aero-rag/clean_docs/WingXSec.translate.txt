@@ -1,0 +1,10 @@
+.. py:method:: WingXSec.translate(xyz)
+
+   Returns a copy of this WingXSec that has been translated by `xyz`.
+
+   :param xyz: The amount to translate the WingXSec. Given as a 3-element NumPy vector.
+
+   Returns: A new WingXSec object.
+
+
+

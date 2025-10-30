@@ -1,0 +1,50 @@
+.. py:class:: DynamicsPointMass1DVertical(mass_props = None, z_e = 0, w_e = 0)
+
+   Bases: :py:obj:`aerosandbox.dynamics.point_mass.point_3D.cartesian.DynamicsPointMass3DCartesian`
+
+
+   Dynamics instance:
+   * simulating a point mass
+   * in 1D, oriented vertically (i.e., the .add_gravity() method will have an effect)
+
+   State variables:
+       z_e: z-position, in Earth axes. [meters]
+       w_e: z-velocity, in Earth axes. [m/s]
+
+   Control variables:
+       Fz_e: Force along the Earth-x axis. [N]
+
+
+
+   .. py:attribute:: mass_props
+
+      For each state variable, self.state_var = state_var
+
+      For each indirect control variable, self.indirect_control_var = indirect_control_var
+
+      For each control variable, self.control_var = 0
+
+
+   .. py:property:: state
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+      Returns the state variables of this Dynamics instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+      This method should look something like:
+          >>> {
+          >>>     "x_e": self.x_e,
+          >>>     "u_e": self.u_e,
+          >>>     ...
+          >>> }
+
+
+   .. py:property:: control_variables
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+
+   .. py:method:: DynamicsPointMass1DVertical.state_derivatives()

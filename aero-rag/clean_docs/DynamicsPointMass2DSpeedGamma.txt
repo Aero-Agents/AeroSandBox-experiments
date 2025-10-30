@@ -1,0 +1,57 @@
+.. py:class:: DynamicsPointMass2DSpeedGamma(mass_props = None, x_e = 0, z_e = 0, speed = 0, gamma = 0, alpha = 0)
+
+   Bases: :py:obj:`aerosandbox.dynamics.point_mass.point_3D.speed_gamma_track.DynamicsPointMass3DSpeedGammaTrack`
+
+
+   Dynamics instance:
+   * simulating a point mass
+   * in 2D
+   * with velocity parameterized in speed-gamma space.
+
+   State variables:
+       x_e: x-position, in Earth axes. [meters]
+       z_e: z-position, in Earth axes. [meters]
+       speed: Speed; equivalent to u_w, the x-velocity in wind axes. [m/s]
+       gamma: Flight path angle. [rad]
+
+   Indirect control variables:
+       alpha: Angle of attack. [degrees]
+
+   Control variables:
+       Fx_w: Force along the wind-x axis. [N]
+       Fz_w: Force along the wind-z axis. [N]
+
+
+
+   .. py:attribute:: mass_props
+
+      For each state variable, self.state_var = state_var
+
+      For each indirect control variable, self.indirect_control_var = indirect_control_var
+
+      For each control variable, self.control_var = 0
+
+
+   .. py:property:: state
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+      Returns the state variables of this Dynamics instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+      This method should look something like:
+          >>> {
+          >>>     "x_e": self.x_e,
+          >>>     "u_e": self.u_e,
+          >>>     ...
+          >>> }
+
+
+   .. py:property:: control_variables
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+
+   .. py:method:: DynamicsPointMass2DSpeedGamma.state_derivatives()

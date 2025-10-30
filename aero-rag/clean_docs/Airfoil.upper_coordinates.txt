@@ -1,0 +1,10 @@
+.. py:method:: Airfoil.upper_coordinates()
+
+   Returns an Nx2 ndarray of [x, y] coordinates that describe the upper surface of the airfoil.
+
+   Order is from the trailing edge to the leading edge.
+
+   Includes the leading edge point; be careful about duplicates if using this method in conjunction with
+   Airfoil.lower_coordinates().
+
+

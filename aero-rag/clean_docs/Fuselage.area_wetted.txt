@@ -1,0 +1,7 @@
+.. py:method:: Fuselage.area_wetted()
+
+   Returns the wetted area of the fuselage.
+
+   :return:
+
+

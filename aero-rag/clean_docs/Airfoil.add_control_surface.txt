@@ -1,0 +1,12 @@
+.. py:method:: Airfoil.add_control_surface(deflection = 0.0, hinge_point_x = 0.75, modify_coordinates = True, modify_polars = True)
+
+   Returns a version of the airfoil with a trailing-edge control surface added at a given point. Implicitly
+   repanels the airfoil as part of this operation.
+
+   :param deflection: Deflection angle [degrees]. Downwards-positive.
+   :param hinge_point_x: Chordwise location of the hinge, as a fraction of chord (x/c) [float]
+
+   Returns: an Airfoil object with the new control deflection.
+
+
+

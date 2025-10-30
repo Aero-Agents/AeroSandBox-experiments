@@ -1,0 +1,10 @@
+.. py:method:: OperatingPoint.get_new_instance_with_state(new_state = None)
+
+   Creates a new instance of the OperatingPoint class from the given state.
+
+   :param new_state: The new state to be used for the new instance. Ideally, this is represented as a Dict in identical format to the `state` of a OperatingPoint instance.
+
+   Returns: A new instance of this same OperatingPoint class.
+
+
+

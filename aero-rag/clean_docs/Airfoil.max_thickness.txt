@@ -1,0 +1,10 @@
+.. py:method:: Airfoil.max_thickness(x_over_c_sample = np.linspace(0, 1, 101))
+
+   Returns the maximum thickness of the airfoil.
+
+   :param x_over_c_sample: Where should the airfoil be sampled to determine the max thickness?
+
+   Returns: The maximum thickness, as a fraction of chord.
+
+
+

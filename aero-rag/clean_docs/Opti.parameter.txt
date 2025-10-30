@@ -1,0 +1,44 @@
+.. py:method:: Opti.parameter(value = 0.0, n_params = None)
+
+   Initializes a new parameter (or vector of parameters). You must pass a value (`value`) upon defining a new
+   parameter. Dimensionality is inferred from this value, but it can be overridden; see below for syntax.
+
+   :param value: Value to set the new parameter to.
+
+                 This can either be a float or a NumPy ndarray; the dimension of the parameter (i.e. scalar,
+                 vector) that is created will be automatically inferred from the shape of the value you provide here.
+                 (Although it can be overridden using the `n_params` parameter; see below.)
+
+                 For scalar parameters, your value should be a float:
+                 >>> opti = asb.Opti()
+                 >>> scalar_param = opti.parameter(value=5) # Initializes a scalar parameter and sets its value to 5.
+
+                 For vector variables, your value should be either:
+
+                     * a float, in which case you must pass the length of the vector as `n_params`, otherwise a scalar
+                     parameter will be created:
+
+                     >>> opti = asb.Opti()
+                     >>> vector_param = opti.parameter(value=5, n_params=10) # Initializes a vector parameter of length
+                     >>> # 10, with all 10 elements set to value of 5.
+
+                     * a NumPy ndarray, in which case each element will be set to the corresponding value in the given
+                     array:
+
+                     >>> opti = asb.Opti()
+                     >>> vector_param = opti.parameter(value=np.linspace(0, 5, 10)) # Initializes a vector parameter of
+                     >>> # length 10, with all 10 elements set to a value varying from 0 to 5.
+   :param n_params: [Optional] Used to manually override the dimensionality of the parameter to create; if not
+                    provided, the dimensionality of the parameter is inferred from `value`.
+
+                    The only real case where you need to use this argument would be if you are initializing a vector
+                    parameter to a scalar value, but you don't feel like using `value=my_value * np.ones(n_vars)`.
+                    For example:
+
+                        >>> opti = asb.Opti()
+                        >>> vector_param = opti.parameter(value=5, n_params=10) # Initializes a vector parameter of length
+                        >>> # 10, with all 10 elements set to a value of 5.
+
+   :returns: The parameter itself as a symbolic CasADi variable (MX type).
+
+

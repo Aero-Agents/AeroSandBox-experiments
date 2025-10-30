@@ -1,0 +1,14 @@
+.. py:method:: Airplane.with_control_deflections(control_surface_deflection_mappings)
+
+   Returns a copy of the airplane with the specified control surface deflections applied.
+
+   :param control_surface_deflection_mappings: A dictionary mapping control surface names to deflections.
+
+                                               * Keys: Control surface names.
+
+                                               * Values: Deflections, in degrees. Downwards-positive, following typical convention.
+
+   Returns: A copy of the airplane with the specified control surface deflections applied.
+
+
+

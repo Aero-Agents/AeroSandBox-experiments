@@ -1,0 +1,8 @@
+.. py:method:: MassProperties.allclose(other, rtol=1e-05, atol=1e-08, equal_nan=False)
+
+
+.. py:property:: xyz_cg
+
+
+.. py:property:: inertia_tensor
+

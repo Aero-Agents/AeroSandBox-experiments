@@ -1,0 +1,18 @@
+.. py:method:: DynamicsPointMass3DSpeedGammaTrack.add_force(Fx = 0, Fy = 0, Fz = 0, axes='wind')
+
+   Adds a force (in whichever axis system you choose) to this Dynamics instance.
+
+   :param Fx: Force in the x-direction in the axis system chosen. [N]
+   :param Fy: Force in the y-direction in the axis system chosen. [N]
+   :param Fz: Force in the z-direction in the axis system chosen. [N]
+   :param axes: The axis system that the specified force is in. One of:
+                * "geometry"
+                * "body"
+                * "wind"
+                * "stability"
+                * "earth"
+
+   Returns: None (in-place)
+
+
+

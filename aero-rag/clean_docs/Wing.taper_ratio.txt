@@ -1,0 +1,7 @@
+.. py:method:: Wing.taper_ratio()
+
+   Gives the taper ratio of the Wing. Strictly speaking, only valid for trapezoidal wings.
+
+   :returns: Taper ratio of the Wing.
+
+

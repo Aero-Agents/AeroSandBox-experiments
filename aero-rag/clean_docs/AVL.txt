@@ -1,0 +1,80 @@
+.. py:class:: AVL(airplane, op_point, xyz_ref = None, avl_command = 'avl', verbose = False, timeout = 5, working_directory = None, ground_effect = False, ground_effect_height = 0)
+
+   Bases: :py:obj:`aerosandbox.common.ExplicitAnalysis`
+
+
+   An interface to AVL, a 3D vortex lattice aerodynamics code developed by Mark Drela at MIT.
+
+   Requires AVL to be on your computer; AVL is available here: https://web.mit.edu/drela/Public/web/avl/
+
+   It is recommended (but not required) that you add AVL to your system PATH environment variable such that it can
+   be called with the command `avl`. If this is not the case, you need to specify the path to your AVL
+   executable using the `avl_command` argument of the constructor.
+
+   Usage example:
+
+       >>> avl = asb.AVL(
+       >>>     airplane=my_airplane,
+       >>>     op_point=asb.OperatingPoint(
+       >>>         velocity=100, # m/s
+       >>>         alpha=5, # deg
+       >>>         beta=4, # deg
+       >>>         p=0.01, # rad/sec
+       >>>         q=0.02, # rad/sec
+       >>>         r=0.03, # rad/sec
+       >>>     )
+       >>> )
+       >>> outputs = avl.run()
+
+
+
+   .. py:attribute:: default_analysis_specific_options
+
+      This is part of AeroSandbox's "analysis-specific options" feature, which lets you "tag" geometry objects with
+      flags that change how different analyses act on them.
+
+      This variable, `default_analysis_specific_options`, allows you to specify default values for options that can be used for
+      specific problems.
+
+      This should be a dictionary, where: * keys are the geometry-like types that you might be interested in defining
+      parameters for. * values are dictionaries, where: * keys are strings that label a given option * values are
+      anything. These are used as the default values, in the event that the associated geometry doesn't override those.
+
+      An example of what this variable might look like, for a vortex-lattice method aerodynamic analysis:
+
+      >>> default_analysis_specific_options = {
+      >>>     Airplane: dict(
+      >>>         profile_drag_coefficient=0
+      >>>     ),
+      >>>     Wing    : dict(
+      >>>         wing_level_spanwise_spacing=True,
+      >>>         spanwise_resolution=12,
+      >>>         spanwise_spacing="cosine",
+      >>>         chordwise_resolution=12,
+      >>>         chordwise_spacing="cosine",
+      >>>         component=None,  # type: int
+      >>>         no_wake=False,
+      >>>         no_alpha_beta=False,
+      >>>         no_load=False,
+      >>>         drag_polar=dict(
+      >>>             CL1=0,
+      >>>             CD1=0,
+      >>>             CL2=0,
+      >>>             CD2=0,
+      >>>             CL3=0,
+      >>>             CD3=0,
+      >>>         ),
+      >>>     )
+      >>> }
+
+
+   .. py:method:: AVL.__repr__()
+   .. py:method:: AVL.open_interactive()
+   .. py:method:: AVL.run(run_command = None)
+   .. py:method:: AVL._default_keystroke_file_contents()
+   .. py:method:: AVL.write_avl(filepath = None)
+   .. py:method:: AVL.write_avl_bfile(fuselage, filepath = None, include_name = True)
+   .. py:method:: AVL.parse_unformatted_data_output(s, data_identifier = ' = ', cast_outputs_to_float = True, overwrite = None)
+.. py:data:: __version__
+   :value: '4.2.6'
+

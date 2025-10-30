@@ -1,0 +1,25 @@
+.. py:method:: DynamicsRigidBody3DBodyEuler.convert_axes(x_from, y_from, z_from, from_axes, to_axes)
+
+   Converts a vector [x_from, y_from, z_from], as given in the `from_axes` frame, to an equivalent vector [x_to,
+   y_to, z_to], as given in the `to_axes` frame.
+
+   Identical to OperatingPoint.convert_axes(), but adds in "earth" as a valid axis frame. For more documentation,
+   see the docstring of OperatingPoint.convert_axes().
+
+   Both `from_axes` and `to_axes` should be a string, one of:
+           * "geometry"
+           * "body"
+           * "wind"
+           * "stability"
+           * "earth"
+
+   :param x_from: x-component of the vector, in `from_axes` frame.
+   :param y_from: y-component of the vector, in `from_axes` frame.
+   :param z_from: z-component of the vector, in `from_axes` frame.
+   :param from_axes: The axes to convert from.
+   :param to_axes: The axes to convert to.
+
+   Returns: The x-, y-, and z-components of the vector, in `to_axes` frame. Given as a tuple.
+
+
+

@@ -1,0 +1,13 @@
+.. py:method:: AeroSandboxObject.__eq__(other)
+
+   Checks if two AeroSandbox objects are value-equivalent. A more sensible default for classes that represent
+   physical objects than checking for memory equivalence.
+
+   This is done by checking if the two objects are of the same type and have the same __dict__.
+
+   :param other: Another object.
+
+   :returns: True if the objects are equal, False otherwise.
+   :rtype: bool
+
+

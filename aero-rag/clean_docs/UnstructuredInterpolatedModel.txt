@@ -1,0 +1,23 @@
+.. py:class:: UnstructuredInterpolatedModel(x_data, y_data, x_data_resample = 10, resampling_interpolator = interpolate.RBFInterpolator, resampling_interpolator_kwargs = None, fill_value=np.nan, interpolated_model_kwargs = None)
+
+   Bases: :py:obj:`aerosandbox.modeling.interpolation.InterpolatedModel`
+
+
+   A model that is interpolated to unstructured (i.e., point cloud) N-dimensional data. Maps from R^N -> R^1.
+
+   You can evaluate this model at a given point by calling it just like a function, e.g.:
+
+   >>> y = my_interpolated_model(x)
+
+   The input to the model (`x` in the example above) is of the type:
+       * in the general N-dimensional case, a dictionary where: keys are variable names and values are float/array
+       * in the case of a 1-dimensional input (R^1 -> R^1), it can optionally just be a float/array.
+   If you're not sure what the input type of `my_interpolated_model` should be, just do:
+
+   >>> print(my_interpolated_model) # Displays the valid input type to the model
+
+   The output of the model (`y` in the example above) is always a float or array.
+
+   See the docstring __init__ method of InterpolatedModel for more details of how to instantiate and use UnstructuredInterpolatedModel.
+
+

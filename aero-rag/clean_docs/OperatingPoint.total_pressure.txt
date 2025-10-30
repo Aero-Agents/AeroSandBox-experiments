@@ -1,0 +1,12 @@
+.. py:method:: OperatingPoint.total_pressure()
+
+   Total (stagnation) pressure of the working fluid.
+
+   Assumes a calorically perfect gas (i.e. specific heats do not change across the isentropic deceleration).
+
+   Note that `total pressure != static pressure + dynamic pressure`, due to compressibility effects.
+
+   Returns: Total pressure of the working fluid. [Pa]
+
+
+

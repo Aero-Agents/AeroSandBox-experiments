@@ -1,0 +1,8 @@
+.. py:method:: MassProperties.inv_inertia_tensor()
+
+   Computes the inverse of the inertia tensor, in a slightly more efficient way than raw inversion by exploiting its known structure.
+
+   If you are effectively using this inertia tensor to solve a linear system, you should use a linear algebra
+   solve() method (ideally via Cholesky decomposition) instead, for best speed.
+
+

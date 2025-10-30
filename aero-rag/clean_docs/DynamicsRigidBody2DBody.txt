@@ -1,0 +1,53 @@
+.. py:class:: DynamicsRigidBody2DBody(mass_props = None, x_e = 0, z_e = 0, u_b = 0, w_b = 0, theta = 0, q = 0)
+
+   Bases: :py:obj:`aerosandbox.dynamics.rigid_body.rigid_3D.body_euler.DynamicsRigidBody3DBodyEuler`
+
+
+   Dynamics instance:
+   * simulating a rigid body
+   * in 2D
+   * with velocity parameterized in body axes
+
+   State variables:
+       x_e: x-position, in Earth axes. [meters]
+       z_e: z-position, in Earth axes. [meters]
+       u_b: x-velocity, in body axes. [m/s]
+       w_b: z-velocity, in body axes. [m/s]
+       theta: pitch angle. [rad]
+       q: y-angular-velocity, in body axes. [rad/sec]
+
+   Control variables:
+       Fx_b: Force along the body-x axis. [N]
+       Fz_b: Force along the body-z axis. [N]
+       My_b: Moment about the body-y axis. [Nm]
+
+
+
+   .. py:attribute:: mass_props
+
+      For each state variable, self.state_var = state_var
+
+      For each indirect control variable, self.indirect_control_var = indirect_control_var
+
+      For each control variable, self.control_var = 0
+
+
+   .. py:property:: state
+
+      Returns the state variables of this Dynamics instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+      This method should look something like:
+          >>> {
+          >>>     "x_e": self.x_e,
+          >>>     "u_e": self.u_e,
+          >>>     ...
+          >>> }
+
+
+   .. py:property:: control_variables
+
+
+   .. py:method:: DynamicsRigidBody2DBody.state_derivatives()

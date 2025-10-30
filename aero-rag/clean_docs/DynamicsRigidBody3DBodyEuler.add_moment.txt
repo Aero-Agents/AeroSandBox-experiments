@@ -1,0 +1,33 @@
+.. py:method:: DynamicsRigidBody3DBodyEuler.add_moment(Mx = 0, My = 0, Mz = 0, axes='body')
+
+   Adds a moment (in whichever axis system you choose) to this Dynamics instance.
+
+   :param Mx: Moment about the x-axis in the axis system chosen. Assumed these moments are applied about the center of mass. [Nm]
+   :param My: Moment about the y-axis in the axis system chosen. Assumed these moments are applied about the center of mass. [Nm]
+   :param Mz: Moment about the z-axis in the axis system chosen. Assumed these moments are applied about the center of mass. [Nm]
+   :param axes: The axis system that the specified moment is in. One of:
+                * "geometry"
+                * "body"
+                * "wind"
+                * "stability"
+                * "earth"
+
+   Returns: None (in-place)
+
+
+
+
+.. py:property:: speed
+
+   The speed of the object, expressed as a scalar.
+
+
+.. py:property:: alpha
+
+   The angle of attack, in degrees.
+
+
+.. py:property:: beta
+
+   The sideslip angle, in degrees.
+

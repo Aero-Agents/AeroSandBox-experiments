@@ -1,0 +1,31 @@
+.. py:class:: KulfanAirfoil(name = 'Untitled', lower_weights = None, upper_weights = None, leading_edge_weight = 0.0, TE_thickness = 0.0, N1 = 0.5, N2 = 1.0)
+
+   Bases: :py:obj:`aerosandbox.geometry.airfoil.airfoil.Airfoil`
+
+
+   An airfoil. See constructor docstring for usage details.
+
+
+   .. py:attribute:: TE_thickness
+      :value: 0.0
+
+
+      Returns the thickness of the trailing edge of the airfoil.
+
+
+   .. py:method:: KulfanAirfoil.__repr__()
+   .. py:method:: KulfanAirfoil.to_airfoil(n_coordinates_per_side=200, spacing_function_per_side=np.cosspace)
+   .. py:method:: KulfanAirfoil.repanel(n_points_per_side = 100, spacing_function_per_side=np.cosspace)
+   .. py:method:: KulfanAirfoil.normalize(return_dict = False)
+   .. py:method:: KulfanAirfoil.draw(*args, draw_markers=False, **kwargs)
+   .. py:method:: KulfanAirfoil.get_aero_from_neuralfoil(alpha, Re, mach = 0.0, n_crit = 9.0, xtr_upper = 1.0, xtr_lower = 1.0, model_size = 'large', control_surfaces = None, include_360_deg_effects = True)
+   .. py:method:: KulfanAirfoil.upper_coordinates(x_over_c = np.linspace(1, 0, 101))
+   .. py:method:: KulfanAirfoil.lower_coordinates(x_over_c = np.linspace(0, 1, 101))
+   .. py:method:: KulfanAirfoil.local_camber(x_over_c = np.linspace(0, 1, 101))
+   .. py:method:: KulfanAirfoil.local_thickness(x_over_c = np.linspace(0, 1, 101))
+   .. py:method:: KulfanAirfoil.LE_radius(relative_softness = 0.03)
+   .. py:method:: KulfanAirfoil.TE_angle()
+   .. py:method:: KulfanAirfoil.area()
+   .. py:method:: KulfanAirfoil.set_TE_thickness(thickness = 0.0)
+   .. py:method:: KulfanAirfoil.scale(scale_x = 1.0, scale_y = 1.0)
+   .. py:method:: KulfanAirfoil.blend_with_another_airfoil(airfoil, blend_fraction = 0.5)

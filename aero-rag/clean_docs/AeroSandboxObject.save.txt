@@ -1,0 +1,17 @@
+.. py:method:: AeroSandboxObject.save(filename = None, verbose = True, automatically_add_extension = True)
+
+   Saves the object to a binary file, using the `dill` library.
+
+   Creates a .asb file, which is a binary file that can be loaded with `aerosandbox.load()`. This can be loaded
+       into memory in a different Python session or a different computer, and it will be exactly the same as when it
+       was saved.
+
+   :param filename: The filename to save this object to. Should be a .asb file.
+   :param verbose: If True, prints messages to console on successful save.
+   :param automatically_add_extension: If True, automatically adds the .asb extension to the filename if it doesn't
+                                       already have it. If False, does not add the extension.
+
+   Returns: None (writes to file)
+
+
+

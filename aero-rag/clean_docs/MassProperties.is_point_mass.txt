@@ -1,0 +1,5 @@
+.. py:method:: MassProperties.is_point_mass()
+
+   Returns True if this MassProperties object corresponds to a point mass, False otherwise.
+
+

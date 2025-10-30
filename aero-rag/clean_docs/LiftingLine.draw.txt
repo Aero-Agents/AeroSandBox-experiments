@@ -1,0 +1,7 @@
+.. py:method:: LiftingLine.draw(c = None, cmap = None, colorbar_label = None, show = True, show_kwargs = None, draw_streamlines=True, recalculate_streamlines=False, backend = 'pyvista')
+
+   Draws the solution. Note: Must be called on a SOLVED AeroProblem object.
+   To solve an AeroProblem, use opti.solve(). To substitute a solved solution, use ap = sol(ap).
+   :return:
+
+

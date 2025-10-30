@@ -1,0 +1,10 @@
+.. py:method:: OperatingPoint.unpack_state(dict_like_state = None)
+
+   'Unpacks' a Dict-like state into an array-like that represents the state of the OperatingPoint.
+
+   :param dict_like_state: Takes in a dict-like representation of the state.
+
+   Returns: The array representation of the state that you gave.
+
+
+

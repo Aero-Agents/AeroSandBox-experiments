@@ -1,0 +1,24 @@
+.. py:class:: Atmosphere(altitude = 0.0, method = 'differentiable', temperature_deviation = 0.0)
+
+   Bases: :py:obj:`aerosandbox.common.AeroSandboxObject`
+
+
+   All models here are smoothed fits to the 1976 COESA model;
+   see AeroSandbox\studies\Atmosphere Fitting for details.
+
+
+
+   .. py:method:: Atmosphere.__repr__()
+   .. py:method:: Atmosphere.__getitem__(index)
+   .. py:method:: Atmosphere.__len__()
+   .. py:method:: Atmosphere.__array__(dtype='O')
+   .. py:method:: Atmosphere.pressure()
+   .. py:method:: Atmosphere.temperature()
+   .. py:method:: Atmosphere.density()
+   .. py:method:: Atmosphere.density_altitude(method = 'approximate')
+   .. py:method:: Atmosphere.speed_of_sound()
+   .. py:method:: Atmosphere.dynamic_viscosity()
+   .. py:method:: Atmosphere.kinematic_viscosity()
+   .. py:method:: Atmosphere.ratio_of_specific_heats()
+   .. py:method:: Atmosphere.mean_free_path()
+   .. py:method:: Atmosphere.knudsen(length)

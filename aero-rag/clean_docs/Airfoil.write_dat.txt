@@ -1,0 +1,12 @@
+.. py:method:: Airfoil.write_dat(filepath = None, include_name = True)
+
+   Writes a .dat file corresponding to this airfoil to a filepath.
+
+   :param filepath: filepath (including the filename and .dat extension) [string]
+                    If None, this function returns the .dat file as a string.
+   :param include_name: Should the name be included in the .dat file? (In a standard *.dat file, it usually is.)
+
+   Returns: None
+
+
+

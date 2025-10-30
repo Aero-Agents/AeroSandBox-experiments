@@ -1,0 +1,9 @@
+.. py:method:: Wing.mean_aerodynamic_chord()
+
+   Computes the length of the mean aerodynamic chord of the wing.
+   Uses the generalized methodology described here:
+       https://core.ac.uk/download/pdf/79175663.pdf
+
+   Returns: The length of the mean aerodynamic chord.
+
+

@@ -1,0 +1,18 @@
+.. py:function:: black_box(function, n_in = None, n_out = 1, fd_method = 'central', fd_step = None, fd_step_iter = None)
+
+   Wraps a function as a black box, allowing it to be used in AeroSandbox / CasADi optimization problems.
+
+   Obtains gradients via finite differences. Assumes that the function's Jacobian is fully dense, always.
+
+   :param function:
+   :param n_in:
+   :param n_out:
+   :param fd_method: One of:
+                     - 'forward'
+                     - 'backward'
+                     - 'central'
+                     - 'smoothed'
+
+   Returns:
+
+

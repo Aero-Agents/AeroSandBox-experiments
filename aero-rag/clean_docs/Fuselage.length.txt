@@ -1,0 +1,7 @@
+.. py:method:: Fuselage.length()
+
+   Returns the total front-to-back length of the fuselage. Measured as the difference between the x-coordinates
+   of the leading and trailing cross-sections.
+   :return:
+
+

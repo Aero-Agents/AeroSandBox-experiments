@@ -1,0 +1,5 @@
+.. py:method:: MassProperties.__rmul__(other)
+
+   Allows multiplication of a scalar by a MassProperties object. Makes multiplication commutative.
+
+

@@ -1,0 +1,6 @@
+.. py:method:: MassProperties.__mul__(other)
+
+   Returns a new MassProperties object that is equivalent to if you had summed together N (with `other`
+   interpreted as N) identical MassProperties objects.
+
+

@@ -1,0 +1,10 @@
+.. py:method:: FuselageXSec.translate(xyz)
+
+   Returns a copy of this FuselageXSec that has been translated by `xyz`.
+
+   :param xyz: The amount to translate the FuselageXSec. Given as a 3-element NumPy vector.
+
+   Returns: A copy of this FuselageXSec, translated by `xyz`.
+
+
+

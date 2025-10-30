@@ -1,0 +1,34 @@
+.. py:class:: LiftingLine(airplane, op_point, xyz_ref = None, model_size = 'medium', run_symmetric_if_possible = False, verbose = False, spanwise_resolution = 4, spanwise_spacing_function = np.cosspace, vortex_core_radius = 1e-08, align_trailing_vortices_with_wind = False)
+
+   Bases: :py:obj:`aerosandbox.ExplicitAnalysis`
+
+
+   An implicit aerodynamics analysis based on lifting line theory, with modifications for nonzero sweep
+   and dihedral + multiple wings.
+
+   Nonlinear, and includes viscous effects based on 2D data.
+
+   Usage example:
+       >>> analysis = asb.LiftingLine(
+       >>>     airplane=my_airplane,
+       >>>     op_point=asb.OperatingPoint(
+       >>>         velocity=100, # m/s
+       >>>         alpha=5, # deg
+       >>>         beta=4, # deg
+       >>>         p=0.01, # rad/sec
+       >>>         q=0.02, # rad/sec
+       >>>         r=0.03, # rad/sec
+       >>>     )
+       >>> )
+       >>> outputs = analysis.run()
+
+
+   .. py:method:: LiftingLine.__repr__()
+   .. py:method:: LiftingLine.run()
+   .. py:method:: LiftingLine.run_with_stability_derivatives(alpha=True, beta=True, p=True, q=True, r=True)
+   .. py:method:: LiftingLine.wing_aerodynamics()
+   .. py:method:: LiftingLine.get_induced_velocity_at_points(points, vortex_strengths = None)
+   .. py:method:: LiftingLine.get_velocity_at_points(points, vortex_strengths = None)
+   .. py:method:: LiftingLine.calculate_fuselage_influences(points)
+   .. py:method:: LiftingLine.calculate_streamlines(seed_points = None, n_steps = 300, length = None)
+   .. py:method:: LiftingLine.draw(c = None, cmap = None, colorbar_label = None, show = True, show_kwargs = None, draw_streamlines=True, recalculate_streamlines=False, backend = 'pyvista')

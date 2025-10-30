@@ -1,0 +1,49 @@
+.. py:method:: Wing.span(type = 'yz', include_centerline_distance=False, _sectional = False)
+
+   Computes the span, with options for various ways of measuring this (see `type` argument).
+
+   If the wing is symmetric, both left/right sides are included in order to obtain the full span. In the case
+   where the root cross-section is not coincident with the center plane (e.g., XZ plane), this function's
+   behavior depends on the `include_centerline_distance` argument.
+
+   :param type: One of the following options, as a string:
+
+                * "xyz": First, computes the quarter-chord point of each WingXSec. Then, connects these with
+                straight lines. Then, adds up the lengths of these lines.
+
+                * "xy" or "top": Same as "xyz", except it projects each line segment onto the XY plane before adding up the
+                lengths.
+
+                * "yz" (default) or "front": Same as "xyz", except it projects each line segment onto the YZ plane (i.e., front view)
+                before adding up the lengths.
+
+                * "xz" or "side": Same as "xyz", except it projects each line segment onto the XZ plane before adding up the
+                lengths. Rarely needed.
+
+                * "x": Same as "xyz", except it only counts the x-components of each line segment when adding up the
+                lengths.
+
+                * "y": Same as "xyz", except it only counts the y-components of each line segment when adding up the
+                lengths.
+
+                * "z": Same as "xyz", except it only counts the z-components of each line segment when adding up the
+                lengths.
+   :param include_centerline_distance: A boolean flag that tells the function what to do if a wing's root is not
+   :param coincident with the centerline plane:
+                                                * If True, we first figure out which WingXSec has its quarter-chord point closest to the centerline
+                                                plane (i.e., XZ plane). Then, we compute the distance from that quarter-chord point directly to the
+                                                centerline plane (along Y). We then add that distance to the span calculation. In other words,
+                                                the fictitious span connecting the left and right root cross-sections is included.
+
+                                                * If False, this distance is ignored. In other words, the fictitious span connecting the left and
+                                                right root cross-sections is not included. This is the default behavior.
+
+                                                Note: For computation, either the root WingXSec (i.e., index=0) or the tip WingXSec (i.e., index=-1)
+                                                is used, whichever is closer to the centerline plane. This will almost-always be the root WingXSec,
+                                                but some weird edge cases (e.g., a half-wing defined on the left-hand-side of the airplane,
+                                                rather than the conventional right-hand side) will result in the tip WingXSec being used.
+   :type coincident with the centerline plane: i.e., XZ plane
+   :param _sectional: A boolean. If False, returns the total span. If True, returns a list of spans for each of the
+                      `n-1` lofted sections (between the `n` wing cross-sections in wing.xsec).
+
+

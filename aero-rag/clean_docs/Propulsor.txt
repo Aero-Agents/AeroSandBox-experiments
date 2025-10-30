@@ -1,0 +1,17 @@
+.. py:class:: Propulsor(name = 'Untitled', xyz_c = None, xyz_normal = None, radius = 1.0, length = 0.0, color = None, analysis_specific_options = None)
+
+   Bases: :py:obj:`aerosandbox.AeroSandboxObject`
+
+
+   Definition for a Propulsor, which could be a propeller, a rotor, or a jet engine.
+
+   Assumes a disk- or cylinder-shaped propulsor.
+
+
+   .. py:method:: Propulsor.__repr__()
+   .. py:method:: Propulsor.xsec_area()
+   .. py:method:: Propulsor.xsec_perimeter()
+   .. py:method:: Propulsor.volume()
+   .. py:method:: Propulsor.compute_frame()
+   .. py:method:: Propulsor.get_disk_3D_coordinates(theta = None, l_over_length = None)
+   .. py:method:: Propulsor.translate(xyz)

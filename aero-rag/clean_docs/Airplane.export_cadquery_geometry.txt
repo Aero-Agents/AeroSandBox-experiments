@@ -1,0 +1,14 @@
+.. py:method:: Airplane.export_cadquery_geometry(filename, minimum_airfoil_TE_thickness = 0.001)
+
+   Exports the airplane geometry to a STEP file.
+
+   :param filename: The filename to export to. Should include the ".step" extension.
+   :param minimum_airfoil_TE_thickness: The minimum thickness of the trailing edge of the airfoils, as a fraction
+   :param of each airfoil's chord. This will be enforced by thickening the trailing edge of the airfoils if:
+   :param necessary. This is useful for avoiding numerical issues in CAD software that can arise from extremely:
+   :param thin:
+   :type thin: i.e., <1e-6 meters
+
+   Returns: None, but exports the airplane geometry to a STEP file.
+
+

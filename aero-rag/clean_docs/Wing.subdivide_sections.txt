@@ -1,0 +1,18 @@
+.. py:method:: Wing.subdivide_sections(ratio, spacing_function = np.linspace)
+
+   Generates a new Wing that subdivides the existing sections of this Wing into several smaller ones. Splits
+   each section into N=`ratio` smaller sub-sections by inserting new cross-sections (xsecs) as needed.
+
+   This can allow for finer aerodynamic resolution of sectional properties in certain analyses.
+
+   :param ratio: The number of new sections to split each old section into.
+   :param spacing_function: A function that takes in three arguments: the start, end, and number of points to generate.
+
+                            The default is `np.linspace`, which generates a linearly-spaced array of points.
+
+                            Other options include `np.cosspace`, which generates a cosine-spaced array of points.
+
+   Returns: A new Wing object with subdivided sections.
+
+
+

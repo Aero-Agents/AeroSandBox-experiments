@@ -1,0 +1,7 @@
+.. py:method:: OperatingPoint.dynamic_pressure()
+
+   Dynamic pressure of the working fluid
+   :returns: Dynamic pressure of the working fluid. [Pa]
+   :rtype: float
+
+

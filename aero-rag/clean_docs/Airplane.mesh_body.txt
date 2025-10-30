@@ -1,0 +1,17 @@
+.. py:method:: Airplane.mesh_body(method='quad', thin_wings=False, stack_meshes=True)
+
+   Returns a surface mesh of the Airplane, in (points, faces) format. For reference on this format,
+   see the documentation in `aerosandbox.geometry.mesh_utilities`.
+
+   :param method:
+   :param thin_wings: Controls whether wings should be meshed as thin surfaces, rather than full 3D bodies.
+   :param stack_meshes: Controls whether the meshes should be merged into a single mesh or not.
+
+                        * If True, returns a (points, faces) tuple in standard mesh format.
+
+                        * If False, returns a list of (points, faces) tuples in standard mesh format.
+
+   Returns:
+
+
+

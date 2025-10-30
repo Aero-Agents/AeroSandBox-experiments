@@ -1,0 +1,5 @@
+.. py:method:: AeroSandboxObject.copy()
+
+   Returns a shallow copy of the object.
+
+

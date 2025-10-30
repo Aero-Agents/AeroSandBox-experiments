@@ -1,0 +1,6 @@
+.. py:method:: MassProperties.__truediv__(other)
+
+   Returns a new MassProperties object that is equivalent to if you had divided the mass of the current
+   MassProperties object by a factor.
+
+

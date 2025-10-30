@@ -1,0 +1,5 @@
+.. py:method:: Propulsor.volume()
+
+   Returns the volume of the propulsor, in m^3.
+
+

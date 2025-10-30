@@ -1,0 +1,25 @@
+.. py:method:: DynamicsRigidBody3DBodyEuler.state_derivatives()
+
+   Computes the state derivatives (i.e. equations of motion) for a body in 3D space.
+
+   Based on Section 9.8.2 of Flight Vehicle Aerodynamics by Mark Drela.
+
+   :returns:
+
+                 {
+                     "xe"   : d_xe,
+                     "ye"   : d_ye,
+                     "ze"   : d_ze,
+                     "u"    : d_u,
+                     "v"    : d_v,
+                     "w"    : d_w,
+                     "phi"  : d_phi,
+                     "theta": d_theta,
+                     "psi"  : d_psi,
+                     "p"    : d_p,
+                     "q"    : d_q,
+                     "r"    : d_r,
+                 }
+   :rtype: Time derivatives of each of the 12 state variables, given in a dictionary
+
+

@@ -1,0 +1,13 @@
+.. py:function:: is_casadi_type(object, recursive = True)
+
+   Returns a boolean of whether an object is a CasADi data type or not. If the recursive flag is True,
+   iterates recursively, returning True if any subelement (at any depth) is a CasADi type.
+
+   :param object: The object to evaluate.
+   :param recursive: If the object is a list or tuple, recursively iterate through every subelement. If any of the
+   :param subelements:
+   :type subelements: at any depth
+
+   Returns: A boolean if the object is (or contains, if recursive=True) a CasADi data type.
+
+

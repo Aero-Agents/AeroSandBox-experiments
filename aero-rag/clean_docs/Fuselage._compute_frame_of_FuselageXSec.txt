@@ -1,0 +1,12 @@
+.. py:method:: Fuselage._compute_frame_of_FuselageXSec(index)
+
+   Computes the local frame of a FuselageXSec, given the index of the FuselageXSec in the Fuselage.xsecs list.
+
+   :param index: The index of the FuselageXSec in the Fuselage.xsecs list.
+
+   Returns:  A tuple:
+       xg_local: The x-axis of the local coordinate frame, in aircraft geometry axes.
+       yg_local: The y-axis of the local coordinate frame, in aircraft geometry axes.
+       zg_local: The z-axis of the local coordinate frame, in aircraft geometry axes.
+
+

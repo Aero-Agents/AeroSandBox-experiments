@@ -1,0 +1,5 @@
+.. py:method:: MassProperties.__sub__(other)
+
+   Subtracts one MassProperties object from another. (opposite of __add__() )
+
+

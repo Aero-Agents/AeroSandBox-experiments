@@ -1,0 +1,33 @@
+.. py:class:: Airfoil(name = 'Untitled', coordinates = None, **deprecated_keyword_arguments)
+
+   Bases: :py:obj:`aerosandbox.geometry.polygon.Polygon`
+
+
+   An airfoil. See constructor docstring for usage details.
+
+
+   .. py:method:: Airfoil.__repr__()
+   .. py:method:: Airfoil.to_kulfan_airfoil(n_weights_per_side = 8, N1 = 0.5, N2 = 1.0, normalize_coordinates = True, use_leading_edge_modification = True)
+   .. py:method:: Airfoil.generate_polars(alphas=np.linspace(-13, 13, 27), Res=np.geomspace(1000.0, 100000000.0, 12), cache_filename = None, xfoil_kwargs = None, unstructured_interpolated_model_kwargs = None, include_compressibility_effects = True, transonic_buffet_lift_knockdown = 0.3, make_symmetric_polars = False)
+   .. py:method:: Airfoil.get_aero_from_neuralfoil(alpha, Re, mach = 0.0, n_crit = 9.0, xtr_upper = 1.0, xtr_lower = 1.0, model_size = 'large', control_surfaces = None, include_360_deg_effects = True)
+   .. py:method:: Airfoil.plot_polars(alphas = np.linspace(-20, 20, 500), Res = 10**np.arange(3, 9), mach = 0.0, show = True, Re_colors=None)
+   .. py:method:: Airfoil.local_camber(x_over_c = np.linspace(0, 1, 101))
+   .. py:method:: Airfoil.local_thickness(x_over_c = np.linspace(0, 1, 101))
+   .. py:method:: Airfoil.max_camber(x_over_c_sample = np.linspace(0, 1, 101))
+   .. py:method:: Airfoil.max_thickness(x_over_c_sample = np.linspace(0, 1, 101))
+   .. py:method:: Airfoil.draw(draw_mcl=False, draw_markers=True, backend='matplotlib', show=True)
+   .. py:method:: Airfoil.LE_index()
+   .. py:method:: Airfoil.lower_coordinates()
+   .. py:method:: Airfoil.upper_coordinates()
+   .. py:method:: Airfoil.LE_radius(softness = 1e-06)
+   .. py:method:: Airfoil.TE_thickness()
+   .. py:method:: Airfoil.TE_angle()
+   .. py:method:: Airfoil.repanel(n_points_per_side = 100, spacing_function_per_side=np.cosspace)
+   .. py:method:: Airfoil.normalize(return_dict = False)
+   .. py:method:: Airfoil.add_control_surface(deflection = 0.0, hinge_point_x = 0.75, modify_coordinates = True, modify_polars = True)
+   .. py:method:: Airfoil.set_TE_thickness(thickness = 0.0)
+   .. py:method:: Airfoil.scale(scale_x = 1.0, scale_y = 1.0)
+   .. py:method:: Airfoil.translate(translate_x = 0.0, translate_y = 0.0)
+   .. py:method:: Airfoil.rotate(angle, x_center = 0.0, y_center = 0.0)
+   .. py:method:: Airfoil.blend_with_another_airfoil(airfoil, blend_fraction = 0.5, n_points_per_side = 100)
+   .. py:method:: Airfoil.write_dat(filepath = None, include_name = True)

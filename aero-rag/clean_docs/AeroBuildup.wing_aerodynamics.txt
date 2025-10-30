@@ -1,0 +1,13 @@
+.. py:method:: AeroBuildup.wing_aerodynamics(wing, include_induced_drag = True)
+
+   Estimates the aerodynamic forces, moments, and derivatives on a wing in isolation.
+
+   Moments are given with the reference at Wing [0, 0, 0].
+
+   :param wing: A Wing object that you wish to analyze.
+   :param op_point: The OperatingPoint that you wish to analyze the fuselage at.
+
+   Returns:
+
+
+

@@ -1,0 +1,12 @@
+.. py:method:: XFoil._run_xfoil(run_command, read_bl_data_from = None)
+
+   Private function to run XFoil.
+
+   Args: run_command: A string with any XFoil keystroke inputs that you'd like. By default, you start off within the OPER
+   menu. All of the inputs indicated in the constructor have been set already, but you can override them here (for
+   this run only) if you want.
+
+   Returns: A dictionary containing all converged solutions obtained with your inputs.
+
+
+

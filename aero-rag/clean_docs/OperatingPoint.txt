@@ -1,0 +1,40 @@
+.. py:class:: OperatingPoint(atmosphere = Atmosphere(altitude=0), velocity = 1.0, alpha = 0.0, beta = 0.0, p = 0.0, q = 0.0, r = 0.0)
+
+   Bases: :py:obj:`aerosandbox.common.AeroSandboxObject`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:property:: state
+      :type: Dict[str, Union[float, aerosandbox.numpy.ndarray]]
+
+
+      Returns the state variables of this OperatingPoint instance as a Dict.
+
+      Keys are strings that give the name of the variables.
+      Values are the variables themselves.
+
+
+   .. py:method:: OperatingPoint.get_new_instance_with_state(new_state = None)
+   .. py:method:: OperatingPoint._set_state(new_state = None)
+   .. py:method:: OperatingPoint.unpack_state(dict_like_state = None)
+   .. py:method:: OperatingPoint.pack_state(array_like_state = None)
+   .. py:method:: OperatingPoint.__repr__()
+   .. py:method:: OperatingPoint.__getitem__(index)
+   .. py:method:: OperatingPoint.__len__()
+   .. py:method:: OperatingPoint.__array__(dtype='O')
+   .. py:method:: OperatingPoint.dynamic_pressure()
+   .. py:method:: OperatingPoint.total_pressure()
+   .. py:method:: OperatingPoint.total_temperature()
+   .. py:method:: OperatingPoint.reynolds(reference_length)
+   .. py:method:: OperatingPoint.mach()
+   .. py:method:: OperatingPoint.indicated_airspeed()
+   .. py:method:: OperatingPoint.equivalent_airspeed()
+   .. py:method:: OperatingPoint.energy_altitude()
+   .. py:method:: OperatingPoint.convert_axes(x_from, y_from, z_from, from_axes, to_axes)
+   .. py:method:: OperatingPoint.compute_rotation_matrix_wind_to_geometry()
+   .. py:method:: OperatingPoint.compute_freestream_direction_geometry_axes()
+   .. py:method:: OperatingPoint.compute_freestream_velocity_geometry_axes()
+   .. py:method:: OperatingPoint.compute_rotation_velocity_geometry_axes(points)

@@ -1,0 +1,10 @@
+.. py:method:: Atmosphere.mean_free_path()
+
+   Returns the mean free path of an air molecule, in meters.
+
+   To find the collision radius, assumes "a hard-sphere gas that has the same viscosity as the actual gas being considered".
+
+   From Vincenti, W. G. and Kruger, C. H. (1965). Introduction to physical gas dynamics. Krieger Publishing Company. p. 414.
+
+
+

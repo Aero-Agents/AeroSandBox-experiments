@@ -1,0 +1,15 @@
+.. py:method:: MassProperties.export_AVL_mass_file(filename)
+
+   Exports this MassProperties object to an AVL mass file.
+
+   Note: AVL uses the SolidWorks convention for inertia tensors, which is different from the typical
+   mathematical convention, and the convention used by this MassProperties class. In short, these differ by a
+   sign flip in the products of inertia. More details available in the MassProperties docstring. See also:
+   https://en.wikipedia.org/wiki/Moment_of_inertia#Inertia_tensor
+
+   :param filename: The filename to export to.
+
+   Returns: None
+
+
+

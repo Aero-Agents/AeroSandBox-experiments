@@ -1,0 +1,17 @@
+.. py:method:: FuselageXSec.compute_frame()
+
+   Computes the local coordinate frame of the FuselageXSec, in aircraft geometry axes.
+
+   xg_local is aligned with the FuselageXSec's normal vector.
+
+   zg_local is roughly aligned with the z-axis of the aircraft geometry axes, but projected onto the FuselageXSec's plane.
+
+   yg_local is the cross product of zg_local and xg_local.
+
+   Returns: A tuple:
+       xg_local: The x-axis of the local coordinate frame, in aircraft geometry axes.
+       yg_local: The y-axis of the local coordinate frame, in aircraft geometry axes.
+       zg_local: The z-axis of the local coordinate frame, in aircraft geometry axes.
+
+
+

@@ -1,0 +1,13 @@
+.. py:method:: Fuselage.x_centroid_projected(type = 'XY')
+
+   Returns the x_g coordinate of the centroid of the planform area.
+
+   :param type: A string, which determines which principal plane to use for projection. One of:
+
+                * "XY", in which case the projected area is onto the XY plane (i.e., top-down)
+
+                * "XZ", in which case the projected area is onto the XZ plane (i.e., side-view)
+
+   Returns: The x_g coordinate of the centroid.
+
+

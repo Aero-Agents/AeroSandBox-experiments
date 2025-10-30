@@ -1,0 +1,5 @@
+.. py:method:: Atmosphere.knudsen(length)
+
+   Computes the Knudsen number for a given length.
+
+

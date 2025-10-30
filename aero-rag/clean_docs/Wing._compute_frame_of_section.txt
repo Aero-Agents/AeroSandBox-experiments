@@ -1,0 +1,13 @@
+.. py:method:: Wing._compute_frame_of_section(index)
+
+   Computes the local reference frame associated with a particular section. (Note that sections and cross
+   sections are different! cross-sections, or xsecs, are the vertices, and sections are the parts in between. In
+   other words, a wing with N cross-sections (xsecs) will always have N-1 sections.
+
+   :param index: Which section should we get the frame of? If given `i`, this retrieves the frame of the section
+   :param between xsecs `i` and `i+1`.:
+
+   :returns: A tuple of (xg_local, yg_local, zg_local), where each entry refers to the respective (normalized) axis
+             of the local reference frame of the section. Given in geometry axes.
+
+
